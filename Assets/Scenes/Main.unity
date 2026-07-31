@@ -178,7 +178,7 @@ PrefabInstance:
     - target: {fileID: 8143338506935703179, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
       propertyPath: HostManager
       value: 
-      objectReference: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8143338506935703179, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
     m_RemovedGameObjects: []
@@ -214,15 +214,6 @@ MonoBehaviour:
   bottom: {x: 0, y: 0, z: 0}
   radius: 0
   speed: 10
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1efee4f2-ee49-4a90-abc2-3bebf395c951
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   HostManager: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
 --- !u!1 &330585543
 GameObject:
@@ -711,7 +702,7 @@ GameObject:
   - component: {fileID: 1320146464}
   - component: {fileID: 1320146463}
   m_Layer: 0
-  m_Name: InputBridge
+  m_Name: Input Layer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,7 +769,42 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 8
     m_Flags: 0
+  slowTimeAction:
+    m_Name: Slow Time
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c3e8dbb9-89c2-41b3-a680-332dc71d0e85
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: df403d65-d7f1-4cc0-87a8-9cec31a1a228
+      m_Path: <Mouse>/rightButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Slow Time
+      m_Flags: 0
+    m_Flags: 0
+  hostAction:
+    m_Name: Host
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8c34576a-7e50-41a1-9583-c2c71963d417
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 00a013ed-ba79-4411-97ad-519b64bd737f
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Host
+      m_Flags: 0
+    m_Flags: 0
   hostManager: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
+  currentTimeScale: 0
 --- !u!4 &1320146464
 Transform:
   m_ObjectHideFlags: 0

@@ -25,9 +25,6 @@ public class MoveMent : MonoBehaviour, IPossessable
     [SerializeField]
     protected float speed = 10.0f;
 
-    [SerializeField]
-    protected InputAction moveAction;
-
     protected Rigidbody rb;
 
     [SerializeField] protected HostManagerSO HostManager;

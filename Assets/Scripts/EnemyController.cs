@@ -8,7 +8,6 @@ public class EnemyController : MoveMent
 {
     private void Start()
     {
-        moveAction.Enable();
         capsuleCollider = GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
     }
