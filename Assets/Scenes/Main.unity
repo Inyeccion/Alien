@@ -214,7 +214,7 @@ MonoBehaviour:
   bottom: {x: 0, y: 0, z: 0}
   radius: 0
   speed: 10
-  HostManager: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
+  hostManager: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +786,23 @@ MonoBehaviour:
       m_Action: Slow Time
       m_Flags: 0
     m_Flags: 0
+  exitHostAction:
+    m_Name: Exit Host
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1e70b2e9-c9df-47db-8f81-a458c66b6c17
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 361b88b4-4b0c-4112-83f2-a8aabd5cc174
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Exit Host
+      m_Flags: 0
+    m_Flags: 0
   hostAction:
     m_Name: Host
     m_Type: 0
@@ -1127,6 +1144,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8143338506935703179, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
       propertyPath: HostManager
+      value: 
+      objectReference: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
+    - target: {fileID: 8143338506935703179, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
+      propertyPath: hostManager
       value: 
       objectReference: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
     m_RemovedComponents: []

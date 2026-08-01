@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MoveMent : MonoBehaviour, IPossessable
+public class MoveMent : MonoBehaviour
 {
     protected CapsuleCollider capsuleCollider;
     [SerializeField]
@@ -27,7 +27,7 @@ public class MoveMent : MonoBehaviour, IPossessable
 
     protected Rigidbody rb;
 
-    [SerializeField] protected HostManagerSO HostManager;
+    [SerializeField] protected HostManagerSO hostManager;
 
 
     protected void CalculateForCast()
@@ -79,20 +79,6 @@ public class MoveMent : MonoBehaviour, IPossessable
                         rb.MovePosition(rb.position + distance);
                 }
             }
-        }
-    }
-
-    public void OnMoveInput(Vector2 action)
-    {
-        //ÓÐÒÆ¶¯
-        if (action != Vector2.zero)
-        {
-            CalculateForCast();
-
-            Vector3 direction = new Vector3(action.x, 0, action.y).normalized;
-            Vector3 distance = direction * speed * Time.deltaTime;
-            EnvironmentCollisionCheck(direction, distance);
-
         }
     }
 }

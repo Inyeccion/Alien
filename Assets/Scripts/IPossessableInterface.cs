@@ -5,6 +5,9 @@ public interface IPossessable
     GameObject gameObject { get; }
     Transform transform { get; }
 
-    void OnMoveInput(Vector2 action);
+    void OnEnterHost();
 
+    void OnExitHost();
+
+    void OnMoveInput(Vector2 action);
 }

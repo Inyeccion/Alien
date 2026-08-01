@@ -5,7 +5,8 @@ public class InputLayer : MonoBehaviour
 {
     [SerializeField] private InputAction moveAction;
     [SerializeField] private InputAction slowTimeAction;
-    [SerializeField] private InputAction hostAction;
+    [SerializeField] private InputAction exitHostAction;
+    public InputAction hostAction;
 
     [SerializeField] private HostManagerSO hostManager;
 
@@ -19,7 +20,8 @@ public class InputLayer : MonoBehaviour
     {
         moveAction.Enable();
         slowTimeAction.Enable();
-        hostAction.Enable();
+        exitHostAction.Enable();
+        hostManager.SetInputLayer(this);
     }
 
     private void Update()
@@ -27,13 +29,21 @@ public class InputLayer : MonoBehaviour
         action = moveAction.ReadValue<Vector2>();
         //时间控制
         if (slowTimeAction.IsPressed())
-        { 
+        {
             hostManager.SlowTimeScale();
             //寄生
             if (hostAction.WasPressedThisFrame())
                 hostManager.RayCastToSetHost();
         }
         else hostManager.ResetTimeScale();
+
+        //退出寄生
+        if (exitHostAction.WasPressedThisFrame())
+        {
+            hostManager.ExitHost();
+        }
+            
+
 
         //Debug
         currentTimeScale = Time.timeScale;
