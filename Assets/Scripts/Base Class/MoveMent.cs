@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MoveMent : MonoBehaviour
+public abstract class MoveMent : MonoBehaviour
 {
     protected CapsuleCollider capsuleCollider;
     [SerializeField]

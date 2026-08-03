@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(fileName = "HostManager", menuName = "HostManager")]
+[CreateAssetMenu(fileName = "HostManager", menuName = "Scriptable Object/Host Manager")]
 public class HostManagerSO : ScriptableObject
 {
     private IPossessable currentHost;

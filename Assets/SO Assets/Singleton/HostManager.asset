@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a65770eef1e3bb4f924832fa0f4f1c6, type: 3}
   m_Name: HostManager
   m_EditorClassIdentifier: 
+  inputLayer: {fileID: 0}
+  isPossessing: 0
   timeScale: 0.5
