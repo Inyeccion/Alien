@@ -17,4 +17,4 @@ MonoBehaviour:
   skillIcon: {fileID: 0}
   skillCooldown: 2
   skillType: 0
-  skillEffect: {fileID: 0}
+  activeSkillEffect: {fileID: 11400000, guid: b84c1bddcbeaaff43b1708782ee5a533, type: 2}

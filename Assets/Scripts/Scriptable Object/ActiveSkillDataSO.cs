@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ActiveSkillData", menuName = "Scriptable Object/Active Skill Data")]
@@ -11,5 +12,17 @@ public class ActiveSkillDataSO : ScriptableObject
 
     public SkillType skillType;
 
-    public ActiveSkillEffect activeSkillEffect;
+    public ActiveSkillEffectSO activeSkillEffect;
+
+    public bool IsMainSkill()
+    {
+        if (skillType == SkillType.manualMain) return true;
+        else return false;
+    }
+
+    public bool IsMinorSkill()
+    {
+        if (skillType == SkillType.manualMinor) return true;
+        else return false;
+    }
 }

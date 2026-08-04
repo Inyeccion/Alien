@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class InputLayer : MonoBehaviour
 {
     [SerializeField] private InputAction moveAction;
     [SerializeField] private InputAction slowTimeAction;
     [SerializeField] private InputAction exitHostAction;
+    [SerializeField] private InputAction mainSkillAction;
+    [SerializeField] private InputAction minorSkillAction;
     public InputAction hostAction;
 
     [SerializeField] private HostManagerSO hostManager;
@@ -21,6 +24,8 @@ public class InputLayer : MonoBehaviour
         moveAction.Enable();
         slowTimeAction.Enable();
         exitHostAction.Enable();
+        mainSkillAction.Enable();
+        minorSkillAction.Enable();
         hostManager.SetInputLayer(this);
     }
 
@@ -43,7 +48,13 @@ public class InputLayer : MonoBehaviour
             hostManager.ExitHost();
         }
             
-
+        //主要技能按键检测
+        if (mainSkillAction.WasPressedThisFrame())
+        {
+            Debug.Log("mainSkillAction WasPressedThisFrame");
+            AbilitySystem currentAbilitySystem = hostManager.currentHost.gameObject.GetComponent<AbilitySystem>();
+            currentAbilitySystem.ActivateMainSkill();
+        }
 
         //Debug
         currentTimeScale = Time.timeScale;

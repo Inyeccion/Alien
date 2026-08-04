@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(fileName = "HostManager", menuName = "Scriptable Object/Host Manager")]
 public class HostManagerSO : ScriptableObject
 {
-    private IPossessable currentHost;
+    public IPossessable currentHost { get; private set; }
 
-    public InputLayer inputLayer;
+    [HideInInspector]public InputLayer inputLayer;
 
     public bool isPossessing = false;
 

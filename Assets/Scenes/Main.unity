@@ -199,6 +199,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6658897864366379206, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
       insertIndex: -1
       addedObject: {fileID: 131079115}
+    - targetCorrespondingSourceObject: {fileID: 6658897864366379206, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 131079121}
   m_SourcePrefab: {fileID: 100100000, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
 --- !u!1 &131079114 stripped
 GameObject:
@@ -227,6 +230,19 @@ MonoBehaviour:
   radius: 0
   speed: 10
   hostManager: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
+--- !u!114 &131079121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131079114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86854e9376725243afb29697911e41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData: {fileID: 11400000, guid: 3dc4c33c796e71542a0fa1bb2ca77d3a, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +830,32 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Exit Host
       m_Flags: 0
+    m_Flags: 0
+  mainSkillAction:
+    m_Name: Main Skill
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: bd37457c-6695-4869-9c03-6d457d6bd3b0
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: da9deca8-3695-4bf0-9b7b-a58bccbb9d16
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Main Skill
+      m_Flags: 0
+    m_Flags: 0
+  minorSkillAction:
+    m_Name: Minor Skill
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1d4de1de-96c3-40b1-a5ba-a4027042f7fe
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
     m_Flags: 0
   hostAction:
     m_Name: Host

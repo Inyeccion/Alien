@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SkillContext : MonoBehaviour
+public class SkillContext
 {
     public Vector3 position;        //单位的位置
 
