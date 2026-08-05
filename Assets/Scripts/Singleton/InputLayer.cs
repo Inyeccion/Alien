@@ -52,7 +52,7 @@ public class InputLayer : MonoBehaviour
         if (mainSkillAction.WasPressedThisFrame())
         {
             Debug.Log("mainSkillAction WasPressedThisFrame");
-            AbilitySystem currentAbilitySystem = hostManager.currentHost.gameObject.GetComponent<AbilitySystem>();
+            AbilitySystem currentAbilitySystem = HostManagerSO.currentHost.gameObject.GetComponent<AbilitySystem>();
             currentAbilitySystem.ActivateMainSkill();
         }
 

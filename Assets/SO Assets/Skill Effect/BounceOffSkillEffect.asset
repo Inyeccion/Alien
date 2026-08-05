@@ -15,3 +15,6 @@ MonoBehaviour:
   bounceForce: 10
   bounceRadius: 5
   damage: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 320

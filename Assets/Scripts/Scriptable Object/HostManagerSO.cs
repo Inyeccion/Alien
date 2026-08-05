@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(fileName = "HostManager", menuName = "Scriptable Object/Host Manager")]
 public class HostManagerSO : ScriptableObject
 {
-    public IPossessable currentHost { get; private set; }
+    public static IPossessable currentHost { get; private set; }
 
     [HideInInspector]public InputLayer inputLayer;
 
@@ -102,12 +102,5 @@ public class HostManagerSO : ScriptableObject
         }
     }
 
-#if UNITY_EDITOR
-    //Debug
-    public string returnCurrentHost()
-    {
-        string ret = currentHost.ToString();
-        return ret;
-    }
-#endif
+
 }
