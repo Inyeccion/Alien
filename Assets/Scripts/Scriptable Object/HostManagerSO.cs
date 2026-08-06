@@ -22,11 +22,12 @@ public class HostManagerSO : ScriptableObject
     }
 
     //移动
-    public void ProcessMoveAction(Vector2 action)
+    public static void InformMotorToProcessMoveAction(Vector2 action)
     {
         //暂时用条件判断来解决
         if (currentHost != null)
-            currentHost.OnMoveInput(action);
+            currentHost.gameObject.GetComponent<CharacterMotor>().AddInternalVelocity(action);
+        else Debug.LogWarning("HostManagerSO: No current host to process move action.");
     }
 
     //退出寄生
@@ -61,19 +62,13 @@ public class HostManagerSO : ScriptableObject
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 5);
         if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {
-            if (hitInfo.collider.GetComponent<EnemyController>() != null)
+            CharacterMotor characterMotor = hitInfo.collider.GetComponent<CharacterMotor>();
+            if (characterMotor != null)
             {
                 Debug.Log("hitInfo Name: " + hitInfo.collider.name);
-                EnemyController enemyController = hitInfo.collider.GetComponent<EnemyController>();
-                enemyController.OnEnterHost();
+                
+                characterMotor.OnEnterHost();
             }
-            else if (hitInfo.collider.GetComponent<PlayerController>() != null)
-            {
-                Debug.Log("hitInfo Name: " + hitInfo.collider.name);
-                PlayerController playerController = hitInfo.collider.GetComponent<PlayerController>();
-                playerController.OnEnterHost();
-            }
-
         }
     }
     //时间控制

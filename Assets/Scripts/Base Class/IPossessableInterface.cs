@@ -9,5 +9,5 @@ public interface IPossessable
 
     void OnExitHost();
 
-    void OnMoveInput(Vector2 action);
+    void OnFinalVelocityInput(Vector3 finalVelocity);
 }

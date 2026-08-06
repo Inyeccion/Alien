@@ -54,7 +54,7 @@ public abstract class MoveMent : MonoBehaviour
         }
         else //检测到墙壁碰撞
         {
-            //正着撞上
+            //撞上
             Debug.Log(hitInfo.collider.gameObject.name);
 
             //斜着撞上

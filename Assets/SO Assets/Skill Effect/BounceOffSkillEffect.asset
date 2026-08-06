@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0784c05d26dde943b25a704156d1375, type: 3}
   m_Name: BounceOffSkillEffect
   m_EditorClassIdentifier: 
-  bounceForce: 10
+  bounceVelocity: 10
   bounceRadius: 5
   damage: 1
   layerMask:

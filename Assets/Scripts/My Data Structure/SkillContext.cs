@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class SkillContext
 {
-    public Health health;       //单位的血量数据SO
+    public GameObject gameObject;   //技能释放的单位
+
+    public Health health;           //单位的血量数据SO
 
     public Vector3 position;        //单位的位置
 
@@ -10,6 +12,8 @@ public class SkillContext
 
     public SkillContext(GameObject gameObject)
     {
+        this.gameObject = gameObject;
+
         this.position = gameObject.transform.position;
 
         health = gameObject.GetComponent<Health>();

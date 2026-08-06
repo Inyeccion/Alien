@@ -32,6 +32,12 @@ public class InputLayer : MonoBehaviour
     private void Update()
     {
         action = moveAction.ReadValue<Vector2>();
+        if (action != Vector2.zero)
+        {
+            HostManagerSO.InformMotorToProcessMoveAction(action);
+        }
+        else Debug.Log("InputLayer: No movement input detected.");
+
         //Ê±¼ä¿ØÖÆ
         if (slowTimeAction.IsPressed())
         {
@@ -60,12 +66,4 @@ public class InputLayer : MonoBehaviour
         currentTimeScale = Time.timeScale;
 
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        hostManager.ProcessMoveAction(action);
-    }
-
-
 }
