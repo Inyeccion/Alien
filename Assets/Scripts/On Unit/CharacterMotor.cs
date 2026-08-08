@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -16,8 +17,11 @@ public class CharacterMotor : MoveMent,IPossessable
 
     private void FixedUpdate()
     {
+        //更新外部速度
         UpdateExternalVelocity();
+        //处理最终速度
         OnFinalVelocityInput(CalculateFinalVelocity());
+        //重置内部速度
         ResetInternalVelocity();
     }
 
@@ -31,14 +35,16 @@ public class CharacterMotor : MoveMent,IPossessable
     //最好将主角的技能逻辑放一部分进去？
     public void OnExitHost() { }  
     
-
+    //如果想要分开处理的话，最好给到一个变量判断是否有外部速度
     public void OnFinalVelocityInput(Vector3 finalVelocity)
     {
         //有移动
         if (!IsVelocityNegligible(finalVelocity))
         {
+            //为CapsuleCast做计算
             CalculateForCast();
-
+            //环境碰撞检测，只在有速度的时候触发
+            CalculateDirection(finalVelocity);
             EnvironmentCollisionCheck(direction, finalVelocity);
 
         }
@@ -72,12 +78,22 @@ public class CharacterMotor : MoveMent,IPossessable
 
     private bool IsVelocityNegligible(Vector3 velocity)
     {
-        return velocity.magnitude < 0.01f;
+        return velocity.magnitude < 0;
     }
 
     private void ResetInternalVelocity()
     {
         internalVelocity = Vector3.zero;
+    }
+
+    private void ResetExternalVelocity()
+    {
+       externalVelocity = Vector3.zero;
+    }
+
+    private void CalculateDirection(Vector3 finalVelocity)
+    {
+        direction = finalVelocity.normalized;
     }
 
 }

@@ -49,21 +49,23 @@ public abstract class MoveMent : MonoBehaviour
         //没有检测到墙壁碰撞
         if (!Physics.CapsuleCast(bottom, top, radius, direction, out RaycastHit hitInfo, distance.magnitude, collisionMask))
         {
-
+            Debug.Log("MoveMent: Wall hasn't been detected.");
             rb.MovePosition(rb.position + distance);
         }
         else //检测到墙壁碰撞
         {
             //撞上
-            Debug.Log(hitInfo.collider.gameObject.name);
+            Debug.Log("MoveMent: Wall has been detected. Collider Object name: " + hitInfo.collider.gameObject.name);
 
             //斜着撞上
             if (Vector3.Angle(direction, hitInfo.normal) < 136)
             {
+                Debug.Log("MoveMent: 斜着撞上了");
                 //左负右正    可能是左手系导致
                 Vector3 cross = Vector3.Cross(direction, hitInfo.normal);
                 if (cross.y > 0)  //右
                 {
+                    Debug.Log("MoveMent: 触发对着墙向右");
                     //矫正方向
                     direction = Quaternion.AngleAxis(45, Vector3.up) * direction;
                     distance = direction * speed * Time.deltaTime;
@@ -72,6 +74,7 @@ public abstract class MoveMent : MonoBehaviour
                 }
                 else              //左
                 {
+                    Debug.Log("MoveMent: 触发对着墙向左");
                     //矫正方向
                     direction = Quaternion.AngleAxis(-45, Vector3.up) * direction;
                     distance = direction * speed * Time.deltaTime;
