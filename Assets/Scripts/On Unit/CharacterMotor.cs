@@ -3,12 +3,16 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 
-public class CharacterMotor : MoveMent,IPossessable
+public class CharacterMotor : CollisionCheck,IPossessable
 {
+    [SerializeField] private Vector3 tempMovePos;
     [SerializeField] private Vector3 internalVelocity;
-    [SerializeField] private Vector3 externalVelocity;
+    public Vector3 externalVelocity { get; private set; }
+    //debug
+    public Vector3 ExternalVelocity;
+
     [SerializeField] private Vector3 direction;
-    [SerializeField] private float unitFriction = 0.1f;
+    [SerializeField] private float unitFriction = 1f;
     private void Start()
     {
         capsuleCollider = GetComponent<CapsuleCollider>();
@@ -17,10 +21,14 @@ public class CharacterMotor : MoveMent,IPossessable
 
     private void FixedUpdate()
     {
+        //debug
+        ExternalVelocity = externalVelocity;
         //更新外部速度
         UpdateExternalVelocity();
         //处理最终速度
-        OnFinalVelocityInput(CalculateFinalVelocity());
+        tempMovePos = OnFinalVelocityInput(CalculateFinalVelocity());
+        //移动
+        rb.MovePosition(rb.position + tempMovePos);
         //重置内部速度
         ResetInternalVelocity();
     }
@@ -36,19 +44,13 @@ public class CharacterMotor : MoveMent,IPossessable
     public void OnExitHost() { }  
     
     //如果想要分开处理的话，最好给到一个变量判断是否有外部速度
-    public void OnFinalVelocityInput(Vector3 finalVelocity)
+    public Vector3 OnFinalVelocityInput(Vector3 finalVelocity)
     {
-        //有移动
-        if (!IsVelocityNegligible(finalVelocity))
-        {
-            //为CapsuleCast做计算
-            CalculateForCast();
-            //环境碰撞检测，只在有速度的时候触发
-            CalculateDirection(finalVelocity);
-            EnvironmentCollisionCheck(direction, finalVelocity);
-
-        }
-        else Debug.Log("CharacterMotor: FinalVelocity IsNegligible.");
+        //为CapsuleCast做计算
+        CalculateForCast();
+        //环境碰撞检测，只在有速度的时候触发
+        direction = CalculateDirection(finalVelocity);
+        return CollisionSolver(direction, finalVelocity);
     }
 
     private Vector3 CalculateFinalVelocity()
@@ -68,17 +70,14 @@ public class CharacterMotor : MoveMent,IPossessable
     public void AddExternalVelocity(Vector3 velocity)
     {
         externalVelocity += velocity;
+        Debug.Log("CharacterMoter: Added externalVelocity");
     }
 
     public void AddInternalVelocity(Vector2 action)
     {
         Vector3 direction = new Vector3(action.x, 0, action.y).normalized;
         internalVelocity = direction * speed;
-    }
-
-    private bool IsVelocityNegligible(Vector3 velocity)
-    {
-        return velocity.magnitude < 0;
+        Debug.Log("CharacterMoter: Added internalVelocity");
     }
 
     private void ResetInternalVelocity()
@@ -91,9 +90,15 @@ public class CharacterMotor : MoveMent,IPossessable
        externalVelocity = Vector3.zero;
     }
 
-    private void CalculateDirection(Vector3 finalVelocity)
+    private void SetInternalVelocity(Vector3 velocity)
     {
-        direction = finalVelocity.normalized;
+        internalVelocity = velocity;
     }
+
+    public void SetExternalVelocity(Vector3 velocity)
+    {
+        externalVelocity = velocity;
+    }
+
 
 }

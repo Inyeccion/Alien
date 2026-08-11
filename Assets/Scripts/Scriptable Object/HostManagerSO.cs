@@ -44,19 +44,18 @@ public class HostManagerSO : ScriptableObject
     public void SetHost(IPossessable nextHost)
     {
         currentHost = nextHost;
-        Debug.Log(currentHost.ToString());
+        Debug.Log("HostManagerSO: currentHost: " + currentHost.ToString());
         //条件判断根据后续开发需求来动态更改  高概率导致bug
         if (currentHost.gameObject.name != "Player")
             isPossessing = true;
         else
             isPossessing = false;
-        Debug.Log("isPossessing = " + isPossessing);
+        Debug.Log("HostManagerSO: isPossessing = " + isPossessing);
 
     }
     //核心的设置寄生体方法
     public void RayCastToSetHost()
     {
-        Debug.Log("hostAction Pressed!");
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 5);
@@ -65,7 +64,7 @@ public class HostManagerSO : ScriptableObject
             CharacterMotor characterMotor = hitInfo.collider.GetComponent<CharacterMotor>();
             if (characterMotor != null)
             {
-                Debug.Log("hitInfo Name: " + hitInfo.collider.name);
+                Debug.Log("HostManagerSO: hitInfo Name: " + hitInfo.collider.name);
                 
                 characterMotor.OnEnterHost();
             }
@@ -81,7 +80,7 @@ public class HostManagerSO : ScriptableObject
             isTimeSlow = true;
 
             inputLayer.hostAction.Enable();  //在时间放慢的时候才启用寄生功能
-            Debug.Log("Time Slowed!");
+            Debug.Log("HostManagerSO: Time Slowed!");
         }
     }
     public void ResetTimeScale()
@@ -93,7 +92,7 @@ public class HostManagerSO : ScriptableObject
             isTimeSlow = false;
 
             inputLayer.hostAction.Disable(); //在时间恢复的时候禁用寄生功能
-            Debug.Log("Time Reset!");
+            Debug.Log("HostManagerSO: Time Reset!");
         }
     }
 

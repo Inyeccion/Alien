@@ -17,7 +17,7 @@ public class BounceOffSkillEffectSO : ActiveSkillEffectSO
             //排除对自己的检测
             if (collider.name != skillContext.gameObject.name)
             {
-                Debug.Log("检测到collider: " + collider.name);
+                Debug.Log("BounceOffSkillEffectSO: RadiusCheck collider: " + collider.name);
                 Health health = collider.GetComponent<Health>();
                 CharacterMotor characterMotor = collider.GetComponent<CharacterMotor>();
                 if (health != null)
@@ -28,12 +28,10 @@ public class BounceOffSkillEffectSO : ActiveSkillEffectSO
                     Vector3 initialvelocity = direction * bounceVelocity;
                     characterMotor.AddExternalVelocity(initialvelocity);
                 }
-                else Debug.LogWarning("Collider does not have a Health component: " + collider.name);
+                else Debug.LogWarning("BounceOffSkillEffectSO: Collider does not have a Health component: " + collider.name);
             }
 
         }
-        Debug.Log("BounceoffSKillEffect Activated");
-
     }
 
     private Collider[] RadiusCheck(Vector3 position)

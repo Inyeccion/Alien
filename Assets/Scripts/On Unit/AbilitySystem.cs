@@ -21,7 +21,7 @@ public class AbilitySystem : MonoBehaviour
 
     public void ActivateMainSkill()
     {
-        Debug.Log("AbilitySystem ActivateMainSkill");
+        Debug.Log("AbilitySystem: ActivateMainSkill");
         foreach (var skillInstance in activeSkillInstances)
         {
             //只遍历当前技能实例的冷却时间为0的技能

@@ -57,7 +57,7 @@ public class InputLayer : MonoBehaviour
         //主要技能按键检测
         if (mainSkillAction.WasPressedThisFrame())
         {
-            Debug.Log("mainSkillAction WasPressedThisFrame");
+            Debug.Log("InputLayer: mainSkillAction WasPressedThisFrame");
             AbilitySystem currentAbilitySystem = HostManagerSO.currentHost.gameObject.GetComponent<AbilitySystem>();
             currentAbilitySystem.ActivateMainSkill();
         }
