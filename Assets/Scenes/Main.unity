@@ -1278,6 +1278,10 @@ PrefabInstance:
       propertyPath: unitFriction
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8143338506935703179, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

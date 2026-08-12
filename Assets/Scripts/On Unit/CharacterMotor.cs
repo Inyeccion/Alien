@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 
-public class CharacterMotor : CollisionCheck,IPossessable
+public class CharacterMotor : CollisionCheck, IPossessable
 {
     [SerializeField] private Vector3 tempMovePos;
     [SerializeField] private Vector3 internalVelocity;
