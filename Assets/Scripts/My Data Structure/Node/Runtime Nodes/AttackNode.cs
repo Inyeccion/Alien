@@ -2,7 +2,12 @@
 
 public class AttackNode : BTNode
 {
-    public AbilitySystem abilitySystem;
+
+    public override NodeState Tick()
+    {
+        return 
+    }
+
     public AttackNode()
     {
         nodeType = NodeType.attackNode;

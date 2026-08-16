@@ -4,11 +4,20 @@ public class AIController : MonoBehaviour
 {
     [SerializeField] private BehaviorTreeSO behaviorTree;
 
+    private RuntimeBehaviorTree runtimeBehaviorTree;
+
     public AIContext AIContext;
 
     private void Start()
     {
         InitializeContext();
+        InitializeRuntimeTree();
+    }
+
+    private void InitializeRuntimeTree()
+    {
+        BTNode root = behaviorTree.InitializeTree(behaviorTree.root);
+        runtimeBehaviorTree = new RuntimeBehaviorTree(root);
     }
 
     private void InitializeContext()

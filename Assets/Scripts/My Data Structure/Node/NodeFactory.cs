@@ -13,7 +13,7 @@ public static class NodeFactory
             Selector selector = new Selector();
             return selector;
         }
-        Debug.LogWarning("NodeFactory: nodeType mismatch, creating a basic BTNode");
-        return new BTNode();
+        Debug.LogWarning("NodeFactory: nodeType mismatch, creating a root BTNode");
+        return new RootNode();
     }
 }

@@ -2,7 +2,7 @@
 
 public class Selector : BTNode
 {
-    public int currentChildrenInd;
+    public int currentChildrenInd = 0;
     public override NodeState Tick()
     {
         while (currentChildrenInd < children.Count)
