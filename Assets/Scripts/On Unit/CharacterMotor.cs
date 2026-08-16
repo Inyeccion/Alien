@@ -37,11 +37,19 @@ public class CharacterMotor : CollisionCheck, IPossessable
     public void OnEnterHost()
     {
         hostManager.SetHost(this);
+        AIController AIController = gameObject.GetComponent<AIController>();
+        if (AIController is not null)
+        {
+            AIController.ShutDown();
+        }
     }
 
 
-    //最好将主角的技能逻辑放一部分进去？
-    public void OnExitHost() { }  
+    //退出寄生
+    public void OnExitHost()
+    {
+
+    }
     
     //如果想要分开处理的话，最好给到一个变量判断是否有外部速度
     public Vector3 OnFinalVelocityInput(Vector3 finalVelocity)

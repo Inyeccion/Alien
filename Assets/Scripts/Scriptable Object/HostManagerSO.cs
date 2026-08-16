@@ -47,7 +47,9 @@ public class HostManagerSO : ScriptableObject
         Debug.Log("HostManagerSO: currentHost: " + currentHost.ToString());
         //条件判断根据后续开发需求来动态更改  高概率导致bug
         if (currentHost.gameObject.name != "Player")
+        {
             isPossessing = true;
+        }
         else
             isPossessing = false;
         Debug.Log("HostManagerSO: isPossessing = " + isPossessing);

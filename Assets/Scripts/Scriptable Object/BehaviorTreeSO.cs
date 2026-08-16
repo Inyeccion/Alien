@@ -3,4 +3,9 @@ using UnityEngine;
 public class BehaviorTreeSO : ScriptableObject
 {
     public BTNodeDataSO root;
+
+    public void InitializeTree()
+    {
+
+    }
 }

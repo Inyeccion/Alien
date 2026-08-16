@@ -1,10 +1,8 @@
+// AI认知世界的信息  数据黑板
 using UnityEngine;
 
 public class BlackBoard : MonoBehaviour
 {
-    public AbilitySystem abilitySystem;         //技能系统
-    public CharacterMotor characterMotor;       //移动组件
-
     public Transform target;                    //当前的目标对象
     public float distanceToTarget;              //目标对象的距离
 
