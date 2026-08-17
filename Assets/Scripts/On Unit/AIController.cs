@@ -16,7 +16,7 @@ public class AIController : MonoBehaviour
 
     private void InitializeRuntimeTree()
     {
-        BTNode root = behaviorTree.InitializeTree(behaviorTree.root);
+        BTNode root = behaviorTree.InitializeTree(behaviorTree.root, AIContext);
         runtimeBehaviorTree = new RuntimeBehaviorTree(root);
     }
 
