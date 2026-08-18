@@ -5,8 +5,17 @@ using UnityEngine.Rendering;
 
 public class CharacterMotor : CollisionCheck, IPossessable
 {
+    //Steering Behavior
+    //注意这里DeltaVelocity只是针对Steering Behavior，技能对速度的影响应该不受这个控制
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float maxDeltaVelocity;
+
+    //FixedUpdate中暂存实际移动向量
     [SerializeField] private Vector3 tempMovePos;
+    //两个Velocity就是真实物理意义
+    //internalVelocity管理所有人类输入导致的速度
     [SerializeField] private Vector3 internalVelocity;
+    //externalVelocity管理所有非人类输入导致的速度
     public Vector3 externalVelocity { get; private set; }
     //debug
     public Vector3 ExternalVelocity;
@@ -75,12 +84,28 @@ public class CharacterMotor : CollisionCheck, IPossessable
         }
     }
 
+    //使得externalVelocity在maxDeltaVelocity的限制下逼近Steering Behavior产生的desiredVelocity
+    public void ApplyDesiredVelocityToExternalVelocity(Vector3 desiredVelocity)
+    {
+        Vector3 deltaVelocity =
+            desiredVelocity - externalVelocity;
+
+        deltaVelocity =
+            Vector3.ClampMagnitude(
+                deltaVelocity,
+                maxDeltaVelocity
+            );
+
+        externalVelocity += deltaVelocity;
+    }
+
+    //这里加入的velocity必须是真实物理意义
     public void AddExternalVelocity(Vector3 velocity)
     {
         externalVelocity += velocity;
         Debug.Log("CharacterMoter: Added externalVelocity");
     }
-
+    //这里加入的action语义只是一个方向
     public void AddInternalVelocity(Vector2 action)
     {
         Vector3 direction = new Vector3(action.x, 0, action.y).normalized;
