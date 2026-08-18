@@ -1,7 +1,7 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ActiveSkillData", menuName = "Scriptable Object/Active Skill Data")]
+[CreateAssetMenu(fileName = "ActiveSkillData", menuName = "Scriptable Object/Skill/Active Skill/Active Skill Data")]
 public class ActiveSkillDataSO : ScriptableObject
 {
     public string skillName;

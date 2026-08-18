@@ -5,7 +5,7 @@ public class AttackNode : BTNode
 
     public override NodeState Tick()
     {
-        return 
+        return NodeState.succeed;
     }
 
     public AttackNode()

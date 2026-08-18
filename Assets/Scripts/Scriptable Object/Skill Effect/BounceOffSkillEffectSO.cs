@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BounceOffSkillEffect", menuName = "Scriptable Object/Active Skill Effect/Bounce Off Skill Effect")]
+[CreateAssetMenu(fileName = "BounceOffSkillEffect", menuName = "Scriptable Object/Skill/Active Skill/Active Skill Effect/Bounce Off Skill Effect")]
 public class BounceOffSkillEffectSO : ActiveSkillEffectSO
 {
     public float bounceVelocity = 10f;

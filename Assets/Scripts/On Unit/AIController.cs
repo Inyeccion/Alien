@@ -13,20 +13,21 @@ public class AIController : MonoBehaviour
         InitializeContext();
         InitializeRuntimeTree();
     }
-
+    //初始化运行时决策树
     private void InitializeRuntimeTree()
     {
         BTNode root = behaviorTree.InitializeTree(behaviorTree.root, AIContext);
         runtimeBehaviorTree = new RuntimeBehaviorTree(root);
     }
-
+    //初始化AIContext
     private void InitializeContext()
     {
-        AIContext.abilitySystem = gameObject.GetComponent<AbilitySystem>();
-        AIContext.characterMotor = gameObject.GetComponent<CharacterMotor>();
+        AIContext.abilitySystem = GetComponent<AbilitySystem>();
+        AIContext.characterMotor = GetComponent<CharacterMotor>();
+        AIContext.movementController = GetComponent<MovementController>();
         InitializeBlackBoard(AIContext.blackBoard);
     }
-
+    //初始化决策所需的数据
     private void InitializeBlackBoard(BlackBoard blackBoard)
     {
         blackBoard = new BlackBoard

@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
+
+[CreateAssetMenu(fileName = "MovementStrategy", menuName = "Scriptable Object/Behavior Tree/Movement Strategy")]
 public class MovementStrategySO : ScriptableObject
 {
-    public NodeType nodeType;
+    public MovementType movementType;
     public ISteeringBehavior primaryBehavior;
     public List<ISteeringBehavior> auxiliaryBehaviors;
 }

@@ -1,5 +1,5 @@
 using UnityEngine;
-[CreateAssetMenu(fileName = "BehaviorTree", menuName = "Scriptable Object/Behavior Tree")]
+[CreateAssetMenu(fileName = "BehaviorTree", menuName = "Scriptable Object/Behavior Tree/Behavior Tree Data")]
 public class BehaviorTreeSO : ScriptableObject
 {
     public BTNodeDataSO root;
