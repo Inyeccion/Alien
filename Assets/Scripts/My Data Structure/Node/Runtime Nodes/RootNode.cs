@@ -1,5 +1,5 @@
 //RootNode只能有一个孩子
-
+using System.Collections.Generic;
 public class RootNode : BTNode
 {
 
@@ -11,5 +11,7 @@ public class RootNode : BTNode
     public RootNode()
     {
         nodeType = NodeType.rootNode;
+
+        children = new List<BTNode>();
     }
 }

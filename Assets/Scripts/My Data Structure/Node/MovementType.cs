@@ -3,5 +3,6 @@
 public enum MovementType
 {
     idle,
-    chase
+    chase,
+    moveTo
 }

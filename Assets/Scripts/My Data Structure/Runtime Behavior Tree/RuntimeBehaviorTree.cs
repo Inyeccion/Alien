@@ -8,4 +8,9 @@ public class RuntimeBehaviorTree : MonoBehaviour
     {
         root = node;
     }
+
+    public NodeState Tick()
+    {
+        return root.Tick();
+    }
 }

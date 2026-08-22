@@ -1,4 +1,4 @@
-
+using System.Collections.Generic;
 
 public class AttackNode : BTNode
 {
@@ -11,5 +11,7 @@ public class AttackNode : BTNode
     public AttackNode()
     {
         nodeType = NodeType.attackNode;
+
+        children = new List<BTNode>();
     }
 }

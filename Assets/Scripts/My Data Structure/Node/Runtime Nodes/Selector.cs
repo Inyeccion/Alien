@@ -1,4 +1,4 @@
-
+using System.Collections.Generic;
 
 public class Selector : BTNode
 {
@@ -26,5 +26,7 @@ public class Selector : BTNode
     public Selector()
     {
         nodeType = NodeType.selector;
+
+        children = new List<BTNode>();
     }
 }

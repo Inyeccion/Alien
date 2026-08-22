@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class AIController : MonoBehaviour
@@ -5,14 +6,32 @@ public class AIController : MonoBehaviour
     [SerializeField] private BehaviorTreeSO behaviorTree;
 
     private RuntimeBehaviorTree runtimeBehaviorTree;
+    [SerializeField] private float behaviorTreeInterval = 0.1f;
+    [SerializeField] private float behaviorTreeTimer = 0;
+
+    private SensorSystem sensorSystem;
 
     public AIContext AIContext;
 
     private void Start()
     {
+        sensorSystem = GetComponent<SensorSystem>();
         InitializeContext();
+        sensorSystem.Initialize(AIContext.blackBoard);
         InitializeRuntimeTree();
     }
+
+    private void Update()
+    {
+        behaviorTreeTimer += Time.deltaTime;
+        if (behaviorTreeTimer > behaviorTreeInterval)
+        {
+            runtimeBehaviorTree.Tick();
+            
+        }
+
+    }
+
     //初始化运行时决策树
     private void InitializeRuntimeTree()
     {
@@ -22,20 +41,16 @@ public class AIController : MonoBehaviour
     //初始化AIContext
     private void InitializeContext()
     {
+        //这边的几个引用是否应该在这里维护需要考虑，关系到系统运行顺序的问题？
         AIContext.abilitySystem = GetComponent<AbilitySystem>();
         AIContext.characterMotor = GetComponent<CharacterMotor>();
         AIContext.movementController = GetComponent<MovementController>();
-        InitializeBlackBoard(AIContext.blackBoard);
+        InitializeBlackBoard();
     }
-    //初始化决策所需的数据
-    private void InitializeBlackBoard(BlackBoard blackBoard)
+    //初始化BB，现在暂时规定为全空
+    private void InitializeBlackBoard()
     {
-        blackBoard = new BlackBoard
-        {
-            target = HostManagerSO.currentHost.transform,
-            distanceToTarget = (HostManagerSO.currentHost.transform.position - transform.position).magnitude,
-            targetPos = HostManagerSO.currentHost.transform.position,
-        };
+        AIContext.blackBoard = new BlackBoard();
 
     }
 

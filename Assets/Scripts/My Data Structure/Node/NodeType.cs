@@ -4,6 +4,9 @@ public enum NodeType
     sequencer,
    
     attackNode,
+
+    moveToNode,
     chaseNode,
+
     rootNode
 }

@@ -4,7 +4,7 @@ public class MovementController : MonoBehaviour
 {
     [SerializeField] private List<MovementStrategySO> movementStrategies;
 
-    [SerializeField] private SteeringContext steeringContext;
+    public SteeringContext steeringContext;
 
     [SerializeField] private MoveIntent moveIntent;
 
@@ -24,8 +24,16 @@ public class MovementController : MonoBehaviour
         steeringContext = new SteeringContext();
     }
 
-    private void SetMoveIntent()
+    //给结点使用
+    public void SetMoveIntent(MovementType movementType, Transform transform)
     {
-        moveIntent = new MoveIntent(steeringContext.movementType, steeringContext.transform);
+        moveIntent = new MoveIntent(movementType, transform);
+    }
+
+    private void UpdateSteeringContext()
+    {
+
+
+
     }
 }

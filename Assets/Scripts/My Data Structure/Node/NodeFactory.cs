@@ -13,6 +13,11 @@ public static class NodeFactory
             Selector selector = new Selector();
             return selector;
         }
+        if (nodeType == NodeType.rootNode)
+        {
+            RootNode rootNode = new RootNode();
+            return rootNode;
+        }
         Debug.LogWarning("NodeFactory: nodeType mismatch, creating a root BTNode");
         return new RootNode();
     }
