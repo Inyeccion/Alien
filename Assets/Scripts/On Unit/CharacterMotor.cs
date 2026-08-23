@@ -10,13 +10,17 @@ public class CharacterMotor : CollisionCheck, IPossessable
     [SerializeField] private float maxSpeed;
     [SerializeField] private float maxDeltaVelocity;
 
-    //FixedUpdate中暂存实际移动向量
-    [SerializeField] private Vector3 tempMovePos;
+    //FixedUpdate中暂存的实际移动向量
+    [SerializeField] private Vector3 tempMoveVec;
+    //碰撞处理之前的速度
+    [SerializeField] private Vector3 finalVelocity;
+
     //两个Velocity就是真实物理意义
     //internalVelocity管理所有人类输入导致的速度
     [SerializeField] private Vector3 internalVelocity;
     //externalVelocity管理所有非人类输入导致的速度
     public Vector3 externalVelocity { get; private set; }
+
     //debug
     public Vector3 ExternalVelocity;
 
@@ -35,9 +39,10 @@ public class CharacterMotor : CollisionCheck, IPossessable
         //更新外部速度
         UpdateExternalVelocity();
         //处理最终速度
-        tempMovePos = OnFinalVelocityInput(CalculateFinalVelocity());
+        finalVelocity = CalculateFinalVelocity();
+        tempMoveVec = OnFinalVelocityInput(finalVelocity);
         //移动
-        rb.MovePosition(rb.position + tempMovePos);
+        rb.MovePosition(rb.position + tempMoveVec);
         //重置内部速度
         ResetInternalVelocity();
     }
@@ -58,6 +63,11 @@ public class CharacterMotor : CollisionCheck, IPossessable
     public void OnExitHost()
     {
 
+    }
+
+    public Vector3 GetMoveVec()
+    {
+        return tempMoveVec;
     }
     
     //如果想要分开处理的话，最好给到一个变量判断是否有外部速度

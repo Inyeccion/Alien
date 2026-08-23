@@ -27,7 +27,7 @@ public class AIController : MonoBehaviour
         if (behaviorTreeTimer > behaviorTreeInterval)
         {
             runtimeBehaviorTree.Tick();
-            
+            behaviorTreeTimer = 0;
         }
 
     }
@@ -43,7 +43,7 @@ public class AIController : MonoBehaviour
     {
         //这边的几个引用是否应该在这里维护需要考虑，关系到系统运行顺序的问题？
         AIContext.abilitySystem = GetComponent<AbilitySystem>();
-        AIContext.characterMotor = GetComponent<CharacterMotor>();
+        //AIContext.characterMotor = GetComponent<CharacterMotor>();
         AIContext.movementController = GetComponent<MovementController>();
         InitializeBlackBoard();
     }

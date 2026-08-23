@@ -16,8 +16,7 @@ public class SteeringContext
     public float maxSpeed;
     public float maxDeltaVelocity;
 
-    public Transform transform;
-    public CharacterMotor characterMotor;
+    public Transform targetTransform;
 
     public void ResetContext()
     {
@@ -33,8 +32,7 @@ public class SteeringContext
         maxSpeed = 0;
         maxDeltaVelocity = 0;
 
-        transform = null;
-        characterMotor = null;
+        targetTransform = null;
     }
 
 }

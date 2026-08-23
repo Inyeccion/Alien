@@ -14,8 +14,8 @@ public class BehaviorTreeSO : ScriptableObject
             return null;
         }
         //先把根创建好
-        BTNode currentNode = NodeFactory.CreateNode(currentNodeData.nodeType);
-        currentNode.AIContext = AIContext;
+        BTNode currentNode = NodeFactory.CreateNode(currentNodeData, AIContext);
+
         //叶子结点直接返回
         if (currentNodeData.children == null) return currentNode;
         //左右  遍历当前结点的所有子结点，但是应该不会遍历到空结点

@@ -1,19 +1,27 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 public static class NodeFactory
 {
-    public static BTNode CreateNode(NodeType nodeType)
+    public static BTNode CreateNode(BTNodeDataSO currentNodeData, AIContext AIContext)
     {
-        if (nodeType == NodeType.attackNode)
+        if (currentNodeData.nodeType == NodeType.chaseNode)
+        {
+            ChaseNode chaseNode = new ChaseNode();
+            if (currentNodeData is ChaseNodeDataSO chaseNodeData)
+                chaseNode.Initialize(chaseNodeData.distanceStopChase, AIContext);
+            return chaseNode;
+        }
+        if (currentNodeData.nodeType == NodeType.attackNode)
         {
             AttackNode attackNode = new AttackNode();
             return attackNode;
         }
-        if (nodeType == NodeType.selector)
+        if (currentNodeData.nodeType == NodeType.selector)
         {
             Selector selector = new Selector();
             return selector;
         }
-        if (nodeType == NodeType.rootNode)
+        if (currentNodeData.nodeType == NodeType.rootNode)
         {
             RootNode rootNode = new RootNode();
             return rootNode;

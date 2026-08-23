@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "NodeData", menuName = "Scriptable Object/Behavior Tree/Node Data")]
+[CreateAssetMenu(fileName = "BTNodeData", menuName = "Scriptable Object/Behavior Tree/BTNode Data")]
 public class BTNodeDataSO : ScriptableObject
 {
     public NodeType nodeType;
