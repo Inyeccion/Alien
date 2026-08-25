@@ -19,7 +19,7 @@ public class ChaseNode : BTNode
 
     public void Initialize(float stopChaseDistance, AIContext context)
     {
-        AIContext = context;
         distanceStopChase = stopChaseDistance;
+        AIContext = context;
     }
 }

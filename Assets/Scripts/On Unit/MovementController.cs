@@ -3,12 +3,29 @@ using System.Collections.Generic;
 public class MovementController : MonoBehaviour
 {
     [SerializeField] private List<MovementStrategySO> movementStrategies;
+    private int currentMovementStrategyInd = -1;
 
     public SteeringContext steeringContext;
 
     private CharacterMotor characterMotor;
 
+    private Vector3 primaryDesiredVelocity;
+    private Vector3 auxiliaryDesiredVelocity;
+
+    //不直接操作moveIntent
     [SerializeField] private MovementType moveIntent;
+    private MovementType myMoveIntent
+    {
+        get { return moveIntent; }
+
+        set
+        {
+            if (moveIntent == value) return;
+            ResetSteeringContext();
+            SetCurrentStrategyInd();
+        }
+    }
+
 
     private void Awake()
     {
@@ -22,7 +39,35 @@ public class MovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        UpdateSteeringContext();
+
+    }
+
+    private void SetCurrentStrategyInd()
+    {
+        for (int i = 0; i < movementStrategies.Count; i++)
+        {
+            if (movementStrategies[i].movementType == moveIntent)
+            {
+                currentMovementStrategyInd = i;
+                break;
+            }
+            else Debug.LogWarning("MovementController: moveIntent and MoveStrategy miss match");
+        }
+    }
+
+    private void CalculatePrimaryDesiredVelocity()
+    {
+        primaryDesiredVelocity = movementStrategies[currentMovementStrategyInd].primaryBehavior.Calculate(steeringContext).desiredVelocity;
+    }
+
+    private void CalculateAuxiliaryDesiredVelocity()
+    {
+        auxiliaryDesiredVelocity = Vector3.zero;
+        foreach (var auxiliaryBehavior in movementStrategies[currentMovementStrategyInd].auxiliaryBehaviors)
+        {
+            auxiliaryDesiredVelocity += auxiliaryBehavior.Calculate(steeringContext).desiredVelocity;
+        }
     }
 
     private void InitializeSteeringContext()
@@ -34,7 +79,7 @@ public class MovementController : MonoBehaviour
     //给结点使用
     public void SetMoveIntent(MovementType movementType)
     {
-        moveIntent = movementType;
+        myMoveIntent = movementType;
     }
 
     //应该要有多个重载
@@ -58,14 +103,15 @@ public class MovementController : MonoBehaviour
         if (characterMotor != null)
         {
             steeringContext.currentVelocity = characterMotor.GetMoveVec();
+            steeringContext.maxSpeed = characterMotor.GetMaxSpeed();
+            steeringContext.maxAcceleration = characterMotor.GetMaxAcceleration();
         }
-
-
     }
 
     //更换意图之后，重置上下文
-    public void ResetSteeringContext()
+    private void ResetSteeringContext()
     {
         steeringContext.ResetContext();
     }
+
 }

@@ -8,12 +8,12 @@ public class CharacterMotor : CollisionCheck, IPossessable
     //Steering Behavior
     //注意这里DeltaVelocity只是针对Steering Behavior，技能对速度的影响应该不受这个控制
     [SerializeField] private float maxSpeed;
-    [SerializeField] private float maxDeltaVelocity;
+    [SerializeField] private float maxAcceleration;
 
     //FixedUpdate中暂存的实际移动向量
     [SerializeField] private Vector3 tempMoveVec;
-    //碰撞处理之前的速度
-    [SerializeField] private Vector3 finalVelocity;
+    //碰撞处理之前的移动距离和方向
+    [SerializeField] private Vector3 finalMoveVec;
 
     //两个Velocity就是真实物理意义
     //internalVelocity管理所有人类输入导致的速度
@@ -39,8 +39,8 @@ public class CharacterMotor : CollisionCheck, IPossessable
         //更新外部速度
         UpdateExternalVelocity();
         //处理最终速度
-        finalVelocity = CalculateFinalVelocity();
-        tempMoveVec = OnFinalVelocityInput(finalVelocity);
+        finalMoveVec = CalculateFinalMoveVec();
+        tempMoveVec = OnFinalVelocityInput(finalMoveVec);
         //移动
         rb.MovePosition(rb.position + tempMoveVec);
         //重置内部速度
@@ -65,6 +65,16 @@ public class CharacterMotor : CollisionCheck, IPossessable
 
     }
 
+    //Get
+    public float GetMaxAcceleration()
+    {
+        return maxAcceleration;
+    }
+
+    public float GetMaxSpeed()
+    {
+        return maxSpeed;
+    }
     public Vector3 GetMoveVec()
     {
         return tempMoveVec;
@@ -80,7 +90,7 @@ public class CharacterMotor : CollisionCheck, IPossessable
         return CollisionSolver(direction, finalVelocity);
     }
 
-    private Vector3 CalculateFinalVelocity()
+    private Vector3 CalculateFinalMoveVec()
     {
         return (internalVelocity + externalVelocity) * Time.deltaTime;
     }
@@ -95,18 +105,9 @@ public class CharacterMotor : CollisionCheck, IPossessable
     }
 
     //使得externalVelocity在maxDeltaVelocity的限制下逼近Steering Behavior产生的desiredVelocity
-    public void ApplyDesiredVelocityToExternalVelocity(Vector3 desiredVelocity)
+    public void ApplyDesiredVelocityToInternalVelocity(Vector3 desiredVelocity)
     {
-        Vector3 deltaVelocity =
-            desiredVelocity - externalVelocity;
-
-        deltaVelocity =
-            Vector3.ClampMagnitude(
-                deltaVelocity,
-                maxDeltaVelocity
-            );
-
-        externalVelocity += deltaVelocity;
+        internalVelocity = Vector3.MoveTowards(internalVelocity, desiredVelocity, maxAcceleration * Time.fixedDeltaTime);
     }
 
     //这里加入的velocity必须是真实物理意义

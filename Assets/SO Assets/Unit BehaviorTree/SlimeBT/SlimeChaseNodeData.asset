@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8db5c94121ff248b50911d2a44ea43, type: 3}
   m_Name: SlimeChaseNodeData
   m_EditorClassIdentifier: 
-  nodeType: 0
+  nodeType: 4
   children: []
-  distanceStopChase: 0
+  distanceStopChase: 5

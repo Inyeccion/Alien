@@ -10,4 +10,9 @@ public class SteeringOutput
         desiredVelocity = linearVelocity;
         angular = angularVelocity;
     }
+
+    public static SteeringOutput operator +(SteeringOutput lhs, SteeringOutput rhs)
+    {
+        return new SteeringOutput(lhs.desiredVelocity + rhs.desiredVelocity, lhs.angular + rhs.angular);
+    }
 }

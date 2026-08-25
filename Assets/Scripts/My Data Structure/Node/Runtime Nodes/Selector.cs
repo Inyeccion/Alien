@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+//这里初步设计成
 public class Selector : BTNode
 {
     public int currentChildrenInd = 0;
@@ -11,6 +12,7 @@ public class Selector : BTNode
 
             if (state is NodeState.running)
             {
+                currentChildrenInd = 0;
                 return NodeState.running;
             }
             if (state is NodeState.succeed)

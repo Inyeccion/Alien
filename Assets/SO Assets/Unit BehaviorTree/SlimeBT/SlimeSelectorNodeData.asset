@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SlimeSelectorNodeData
   m_EditorClassIdentifier: 
   nodeType: 0
-  children: []
+  children:
+  - {fileID: 0}
