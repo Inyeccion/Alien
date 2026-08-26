@@ -31,12 +31,19 @@ public class InputLayer : MonoBehaviour
 
     private void Update()
     {
+        //移动控制
         action = moveAction.ReadValue<Vector2>();
         if (action != Vector2.zero)
         {
+            Debug.Log("InputLayer: Movement input detected.");
             HostManagerSO.InformMotorToProcessMoveAction(action);
         }
-        else Debug.Log("InputLayer: No movement input detected.");
+        else
+        {
+            Debug.Log("InputLayer: No movement input detected.");
+            HostManagerSO.InformMotorToProcessEmptyMoveAction();
+        }
+
 
         //时间控制
         if (slowTimeAction.IsPressed())

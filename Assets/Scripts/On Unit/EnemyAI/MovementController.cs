@@ -21,7 +21,9 @@ public class MovementController : MonoBehaviour
         set
         {
             if (moveIntent == value) return;
+            moveIntent = value;
             ResetSteeringContext();
+            Debug.Log("MovementController: ResetSteeringContext");
             SetCurrentStrategyInd();
         }
     }
@@ -30,6 +32,7 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         InitializeSteeringContext();
+
     }
 
     private void Start()
@@ -39,8 +42,18 @@ public class MovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        ResetVelocities();
         UpdateSteeringContext();
+        CalculatePrimaryDesiredVelocity();
+        CalculateAuxiliaryDesiredVelocity();
+        characterMotor.ApplyDesiredVelocityToInternalVelocity(CalculateFinalDesiredVelocity());
+    }
 
+    private bool isCurrentMovementStrategyIndInRange()
+    {
+        if (currentMovementStrategyInd < 0) return false;
+        if (currentMovementStrategyInd > movementStrategies.Count - 1) return false;
+        return true;
     }
 
     private void SetCurrentStrategyInd()
@@ -56,24 +69,38 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    private void ResetVelocities()
+    {
+        primaryDesiredVelocity = Vector3.zero;
+        auxiliaryDesiredVelocity = Vector3.zero;
+    }
+
+    private Vector3 CalculateFinalDesiredVelocity()
+    {
+        Vector3 temp = primaryDesiredVelocity + auxiliaryDesiredVelocity;
+        return Vector3.ClampMagnitude(temp, steeringContext.maxSpeed);
+    }
+
     private void CalculatePrimaryDesiredVelocity()
     {
-        primaryDesiredVelocity = movementStrategies[currentMovementStrategyInd].primaryBehavior.Calculate(steeringContext).desiredVelocity;
+        if (isCurrentMovementStrategyIndInRange())
+            primaryDesiredVelocity = movementStrategies[currentMovementStrategyInd].primaryBehavior.Calculate(steeringContext).desiredVelocity;
     }
 
     private void CalculateAuxiliaryDesiredVelocity()
     {
         auxiliaryDesiredVelocity = Vector3.zero;
-        foreach (var auxiliaryBehavior in movementStrategies[currentMovementStrategyInd].auxiliaryBehaviors)
-        {
-            auxiliaryDesiredVelocity += auxiliaryBehavior.Calculate(steeringContext).desiredVelocity;
-        }
+        if (isCurrentMovementStrategyIndInRange())
+            foreach (var auxiliaryBehavior in movementStrategies[currentMovementStrategyInd].auxiliaryBehaviors)
+            {
+                auxiliaryDesiredVelocity += auxiliaryBehavior.Calculate(steeringContext).desiredVelocity;
+            }
     }
 
     private void InitializeSteeringContext()
     {
         //初始化steering上下文
-        steeringContext = new SteeringContext();
+        steeringContext = new SteeringContext(transform);
     }
 
     //给结点使用
@@ -104,7 +131,7 @@ public class MovementController : MonoBehaviour
         {
             steeringContext.currentVelocity = characterMotor.GetMoveVec();
             steeringContext.maxSpeed = characterMotor.GetMaxSpeed();
-            steeringContext.maxAcceleration = characterMotor.GetMaxAcceleration();
+            steeringContext.acceleration = characterMotor.GetAcceleration();
         }
     }
 

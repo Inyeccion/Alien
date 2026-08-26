@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5820461704562214980, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.86
+      value: -2.93
       objectReference: {fileID: 0}
     - target: {fileID: 5820461704562214980, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
       propertyPath: m_LocalPosition.y
@@ -209,6 +209,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6658897864366379206, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
       insertIndex: -1
       addedObject: {fileID: 131079122}
+    - targetCorrespondingSourceObject: {fileID: 6658897864366379206, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 131079136}
+    - targetCorrespondingSourceObject: {fileID: 6658897864366379206, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 131079134}
+    - targetCorrespondingSourceObject: {fileID: 6658897864366379206, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 131079135}
   m_SourcePrefab: {fileID: 100100000, guid: 7c9edda062b4b9344bcf3b13459c04da, type: 3}
 --- !u!1 &131079114 stripped
 GameObject:
@@ -262,15 +271,74 @@ MonoBehaviour:
   top: {x: 0, y: 0, z: 0}
   bottom: {x: 0, y: 0, z: 0}
   radius: 0
-  speed: 10
   hostManager: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
-  maxSpeed: 0
-  maxDeltaVelocity: 0
-  tempMovePos: {x: 0, y: 0, z: 0}
+  movementProfile: {fileID: 11400000, guid: 6eee8fa9fc31b31488da79a5d9a6b5ee, type: 2}
+  tempMoveVec: {x: 0, y: 0, z: 0}
+  finalMoveVec: {x: 0, y: 0, z: 0}
   internalVelocity: {x: 0, y: 0, z: 0}
   ExternalVelocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
-  unitFriction: 3
+--- !u!114 &131079134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131079114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404c1bc05c00d82498a5c630aecd9a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behaviorTree: {fileID: 11400000, guid: 1c6d2c62836330d44b24c536a85081ad, type: 2}
+  behaviorTreeInterval: 0.1
+  behaviorTreeTimer: 0
+  AIContext:
+    abilitySystem: {fileID: 0}
+    movementController: {fileID: 0}
+    blackBoard:
+      target: {fileID: 0}
+      distanceToTarget: 0
+      targetPos: {x: 0, y: 0, z: 0}
+--- !u!114 &131079135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131079114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b8d0d6cbe4a484b83df32da55d9bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementStrategies:
+  - {fileID: 11400000, guid: 15496e73fa39e8c41bd52565093844aa, type: 2}
+  steeringContext:
+    currentPos: {x: 0, y: 0, z: 0}
+    currentVelocity: {x: 0, y: 0, z: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    targetVelocity: {x: 0, y: 0, z: 0}
+    maxSpeed: 0
+    acceleration: 0
+    targetTransform: {fileID: 0}
+  moveIntent: 0
+--- !u!114 &131079136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131079114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af1f4e66d296b94a84270afccfd3d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackBoard:
+    target: {fileID: 0}
+    distanceToTarget: 0
+    targetPos: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,15 +1026,13 @@ MonoBehaviour:
   top: {x: 0, y: 0, z: 0}
   bottom: {x: 0, y: 0, z: 0}
   radius: 0
-  speed: 10
   hostManager: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
-  maxSpeed: 0
-  maxDeltaVelocity: 0
-  tempMovePos: {x: 0, y: 0, z: 0}
+  movementProfile: {fileID: 11400000, guid: 6eee8fa9fc31b31488da79a5d9a6b5ee, type: 2}
+  tempMoveVec: {x: 0, y: 0, z: 0}
+  finalMoveVec: {x: 0, y: 0, z: 0}
   internalVelocity: {x: 0, y: 0, z: 0}
   ExternalVelocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
-  unitFriction: 3
 --- !u!114 &1430765503
 MonoBehaviour:
   m_ObjectHideFlags: 0

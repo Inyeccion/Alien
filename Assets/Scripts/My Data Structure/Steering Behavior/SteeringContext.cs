@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 public class SteeringContext
 {
     //自身数据
@@ -12,9 +13,15 @@ public class SteeringContext
 
     //Steering Behavior
     public float maxSpeed;
-    public float maxAcceleration;
+    public float acceleration;
 
     public Transform targetTransform;
+
+    public SteeringContext(Transform currentTransform)
+    {
+        currentPos = currentTransform.position;
+        targetPos = currentPos;
+    }
 
     public void ResetContext()
     {
@@ -25,7 +32,7 @@ public class SteeringContext
         targetVelocity = Vector3.zero;
 
         maxSpeed = 0;
-        maxAcceleration = 0;
+        acceleration = 0;
 
         targetTransform = null;
     }

@@ -1,7 +1,8 @@
 // AI认知世界的信息  数据黑板
 using UnityEngine;
 
-public class BlackBoard : MonoBehaviour
+[System.Serializable]
+public class BlackBoard
 {
     public Transform target;                    //当前的目标对象
     public float distanceToTarget;              //目标对象的距离

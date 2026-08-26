@@ -6,6 +6,20 @@ public class SensorSystem : MonoBehaviour
 
     private List<ISensor> sensors;
 
+    private void Awake()
+    {
+        InitializeSensorList();
+    }
+
+    private void Start()
+    {
+        blackBoard = GetComponent<AIController>().GetBlackBoardRef();
+        foreach (var sensor in sensors)
+        {
+            sensor.Initialize(blackBoard);
+        }
+    }
+
     private void Update()
     {
         foreach (var sensor in sensors)
@@ -14,8 +28,9 @@ public class SensorSystem : MonoBehaviour
         }
     }
 
-    public void Initialize(BlackBoard board)
+    private void InitializeSensorList()
     {
-        blackBoard = board; 
+        sensors = new List<ISensor>();
+        sensors.Add(new VisionSensor());
     }
 }

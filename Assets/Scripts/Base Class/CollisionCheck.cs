@@ -26,9 +26,6 @@ public abstract class CollisionCheck : MonoBehaviour
     [SerializeField]
     protected float radius;
 
-    [SerializeField]
-    protected float speed = 10.0f;
-
     protected Rigidbody rb;
 
     [SerializeField] protected HostManagerSO hostManager;

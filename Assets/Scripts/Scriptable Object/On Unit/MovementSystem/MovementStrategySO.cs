@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class MovementStrategySO : ScriptableObject
 {
     public MovementType movementType;
-    public ISteeringBehavior primaryBehavior;
-    public List<ISteeringBehavior> auxiliaryBehaviors;
+    public SteeringBehaviorSO primaryBehavior;
+    public List<SteeringBehaviorSO> auxiliaryBehaviors;
 }
 

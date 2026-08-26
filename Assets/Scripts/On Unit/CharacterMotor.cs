@@ -7,8 +7,7 @@ public class CharacterMotor : CollisionCheck, IPossessable
 {
     //Steering Behavior
     //注意这里DeltaVelocity只是针对Steering Behavior，技能对速度的影响应该不受这个控制
-    [SerializeField] private float maxSpeed;
-    [SerializeField] private float maxAcceleration;
+    [SerializeField] private MovementProfileSO movementProfile;
 
     //FixedUpdate中暂存的实际移动向量
     [SerializeField] private Vector3 tempMoveVec;
@@ -25,7 +24,7 @@ public class CharacterMotor : CollisionCheck, IPossessable
     public Vector3 ExternalVelocity;
 
     [SerializeField] private Vector3 direction;
-    [SerializeField] private float unitFriction = 1f;
+    
     private void Start()
     {
         capsuleCollider = GetComponent<CapsuleCollider>();
@@ -43,11 +42,10 @@ public class CharacterMotor : CollisionCheck, IPossessable
         tempMoveVec = OnFinalVelocityInput(finalMoveVec);
         //移动
         rb.MovePosition(rb.position + tempMoveVec);
-        //重置内部速度
-        ResetInternalVelocity();
     }
 
     //初始化逻辑外层可以放在这里？
+    //错误的，应该另外有一层HostCore之类的
     public void OnEnterHost()
     {
         hostManager.SetHost(this);
@@ -55,6 +53,7 @@ public class CharacterMotor : CollisionCheck, IPossessable
         if (AIController is not null)
         {
             AIController.ShutDown();
+            Debug.Log("CharacterMotor: AIController Shutting Down.");
         }
     }
 
@@ -66,14 +65,14 @@ public class CharacterMotor : CollisionCheck, IPossessable
     }
 
     //Get
-    public float GetMaxAcceleration()
+    public float GetAcceleration()
     {
-        return maxAcceleration;
+        return movementProfile.acceleration;
     }
 
     public float GetMaxSpeed()
     {
-        return maxSpeed;
+        return movementProfile.maxSpeed;
     }
     public Vector3 GetMoveVec()
     {
@@ -100,30 +99,42 @@ public class CharacterMotor : CollisionCheck, IPossessable
         if (!IsVelocityNegligible(externalVelocity))
         {
             //只对外部速度进行摩擦处理，内部速度不受摩擦影响
-            externalVelocity *= Mathf.Exp(-unitFriction * Time.fixedDeltaTime);
+            externalVelocity *= Mathf.Exp(-movementProfile.unitFriction * Time.fixedDeltaTime);
         }
     }
 
-    //使得externalVelocity在maxDeltaVelocity的限制下逼近Steering Behavior产生的desiredVelocity
+    //使得internalVelocity在acceleration的限制下逼近Steering Behavior产生的desiredVelocity
+    //AI用
     public void ApplyDesiredVelocityToInternalVelocity(Vector3 desiredVelocity)
     {
-        internalVelocity = Vector3.MoveTowards(internalVelocity, desiredVelocity, maxAcceleration * Time.fixedDeltaTime);
+        if (desiredVelocity != Vector3.zero)
+            internalVelocity = Vector3.MoveTowards(internalVelocity, desiredVelocity, movementProfile.acceleration * Time.fixedDeltaTime);
+        else internalVelocity = Vector3.MoveTowards(internalVelocity, desiredVelocity, movementProfile.deceleration * Time.fixedDeltaTime);
     }
 
+    //这里加入的action语义只是一个方向
+    //玩家用
+    public void PlayerApplyDesiredVelocityToInternalVelocity(Vector2 action)
+    {
+        Vector3 direction = new Vector3(action.x, 0, action.y).normalized;
+        Vector3 desiredVelocity = direction * movementProfile.maxSpeed;
+        if (desiredVelocity != Vector3.zero)
+        {
+            internalVelocity = Vector3.MoveTowards(internalVelocity, desiredVelocity, movementProfile.acceleration * Time.deltaTime);
+        }
+        else
+        {
+            internalVelocity = Vector3.MoveTowards(internalVelocity, desiredVelocity, movementProfile.deceleration * Time.deltaTime);
+        }
+    }
     //这里加入的velocity必须是真实物理意义
     public void AddExternalVelocity(Vector3 velocity)
     {
         externalVelocity += velocity;
         Debug.Log("CharacterMoter: Added externalVelocity");
     }
-    //这里加入的action语义只是一个方向
-    public void AddInternalVelocity(Vector2 action)
-    {
-        Vector3 direction = new Vector3(action.x, 0, action.y).normalized;
-        internalVelocity = direction * speed;
-        Debug.Log("CharacterMoter: Added internalVelocity");
-    }
 
+    //Reset
     private void ResetInternalVelocity()
     {
         internalVelocity = Vector3.zero;
@@ -134,6 +145,7 @@ public class CharacterMotor : CollisionCheck, IPossessable
        externalVelocity = Vector3.zero;
     }
 
+    //Set
     private void SetInternalVelocity(Vector3 velocity)
     {
         internalVelocity = velocity;

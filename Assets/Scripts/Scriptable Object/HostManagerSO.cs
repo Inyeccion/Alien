@@ -22,11 +22,18 @@ public class HostManagerSO : ScriptableObject
     }
 
     //移动
+    public static void InformMotorToProcessEmptyMoveAction()
+    {
+        if (currentHost != null)
+            currentHost.gameObject.GetComponent<CharacterMotor>().PlayerApplyDesiredVelocityToInternalVelocity(Vector2.zero);
+        else Debug.Log("HostManagerSO: No current host to process move action.");
+    }
+
     public static void InformMotorToProcessMoveAction(Vector2 action)
     {
         //暂时用条件判断来解决
         if (currentHost != null)
-            currentHost.gameObject.GetComponent<CharacterMotor>().AddInternalVelocity(action);
+            currentHost.gameObject.GetComponent<CharacterMotor>().PlayerApplyDesiredVelocityToInternalVelocity(action);
         else Debug.LogWarning("HostManagerSO: No current host to process move action.");
     }
 

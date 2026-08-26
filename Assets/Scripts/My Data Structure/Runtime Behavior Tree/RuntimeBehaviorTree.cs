@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RuntimeBehaviorTree : MonoBehaviour
+public class RuntimeBehaviorTree
 {
     public BTNode root;
 

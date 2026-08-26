@@ -21,7 +21,7 @@ public class BehaviorTreeSO : ScriptableObject
         //左右  遍历当前结点的所有子结点，但是应该不会遍历到空结点
         for (int i = 0; i < currentNodeData.children.Count; i++)
         {
-            currentNode.children[i] = InitializeTree(currentNodeData.children[i], AIContext);
+            currentNode.children.Add(InitializeTree(currentNodeData.children[i], AIContext));
         }
 
         //根

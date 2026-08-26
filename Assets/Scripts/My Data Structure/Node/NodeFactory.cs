@@ -11,6 +11,12 @@ public static class NodeFactory
                 chaseNode.Initialize(chaseNodeData.distanceStopChase, AIContext);
             return chaseNode;
         }
+        if (currentNodeData.nodeType == NodeType.hasTargetCondition)
+        {
+            HasTargetCondition hasTargetCondition = new HasTargetCondition();
+            hasTargetCondition.Initialize(AIContext);
+            return hasTargetCondition;
+        }
         if (currentNodeData.nodeType == NodeType.attackNode)
         {
             AttackNode attackNode = new AttackNode();
@@ -20,6 +26,11 @@ public static class NodeFactory
         {
             Selector selector = new Selector();
             return selector;
+        }
+        if (currentNodeData.nodeType == NodeType.sequencer)
+        {
+            Sequencer sequencer = new Sequencer();
+            return sequencer;
         }
         if (currentNodeData.nodeType == NodeType.rootNode)
         {
