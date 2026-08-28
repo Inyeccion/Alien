@@ -9,5 +9,5 @@ public interface IPossessable
 
     void OnExitHost();
 
-    Vector3 OnFinalVelocityInput(Vector3 finalVelocity);
+    bool IsPlayer();
 }

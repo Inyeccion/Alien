@@ -23,7 +23,7 @@ public class AIController : MonoBehaviour
         RuntimeBehaviorTreeTick();
     }
 
-    private bool isTargetExist()
+    private bool IsTargetExist()
     {
         if (AIContext.blackBoard.target == null) return false;
         return true;
@@ -31,7 +31,7 @@ public class AIController : MonoBehaviour
 
     private void UpdateBlackBoardContext()
     {
-        if (isTargetExist())
+        if (IsTargetExist())
         {
             AIContext.blackBoard.targetPos = AIContext.blackBoard.target.position;
             AIContext.blackBoard.distanceToTarget = (transform.position - AIContext.blackBoard.targetPos).magnitude;

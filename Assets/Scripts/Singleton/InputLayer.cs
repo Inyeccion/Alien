@@ -11,8 +11,6 @@ public class InputLayer : MonoBehaviour
     [SerializeField] private InputAction minorSkillAction;
     public InputAction hostAction;
 
-    [SerializeField] private HostManagerSO hostManager;
-
     private Vector2 action;
 
     //Debug
@@ -26,7 +24,7 @@ public class InputLayer : MonoBehaviour
         exitHostAction.Enable();
         mainSkillAction.Enable();
         minorSkillAction.Enable();
-        hostManager.SetInputLayer(this);
+        HostManagerSO.SetInputLayer(this);
     }
 
     private void Update()
@@ -48,17 +46,17 @@ public class InputLayer : MonoBehaviour
         //时间控制
         if (slowTimeAction.IsPressed())
         {
-            hostManager.SlowTimeScale();
+            HostManagerSO.SlowTimeScale();
             //寄生
             if (hostAction.WasPressedThisFrame())
-                hostManager.RayCastToSetHost();
+                HostManagerSO.RayCastToSetHost();
         }
-        else hostManager.ResetTimeScale();
+        else HostManagerSO.ResetTimeScale();
 
         //退出寄生
         if (exitHostAction.WasPressedThisFrame())
         {
-            hostManager.ExitHost();
+            HostManagerSO.ExitHost();
         }
             
         //主要技能按键检测

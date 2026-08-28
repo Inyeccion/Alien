@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 
-public class CharacterMotor : CollisionCheck, IPossessable
+public class CharacterMotor : CollisionCheck
 {
     //Steering Behavior
     //注意这里DeltaVelocity只是针对Steering Behavior，技能对速度的影响应该不受这个控制
@@ -42,26 +42,6 @@ public class CharacterMotor : CollisionCheck, IPossessable
         tempMoveVec = OnFinalVelocityInput(finalMoveVec);
         //移动
         rb.MovePosition(rb.position + tempMoveVec);
-    }
-
-    //初始化逻辑外层可以放在这里？
-    //错误的，应该另外有一层HostCore之类的
-    public void OnEnterHost()
-    {
-        hostManager.SetHost(this);
-        AIController AIController = gameObject.GetComponent<AIController>();
-        if (AIController is not null)
-        {
-            AIController.ShutDown();
-            Debug.Log("CharacterMotor: AIController Shutting Down.");
-        }
-    }
-
-
-    //退出寄生
-    public void OnExitHost()
-    {
-
     }
 
     //Get

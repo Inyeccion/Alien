@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8db5c94121ff248b50911d2a44ea43, type: 3}
   m_Name: ChaseNodeData
   m_EditorClassIdentifier: 
-  nodeType: 4
+  nodeType: 5
   children: []
   distanceStopChase: 100

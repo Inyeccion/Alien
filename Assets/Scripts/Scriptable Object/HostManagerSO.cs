@@ -8,17 +8,17 @@ public class HostManagerSO : ScriptableObject
 {
     public static IPossessable currentHost { get; private set; }
 
-    [HideInInspector]public InputLayer inputLayer;
+    [HideInInspector]public static InputLayer inputLayer;
 
-    public bool isPossessing = false;
+    public static bool isPossessing = false;
 
-    [SerializeField] private float timeScale = 0.5f;
-    private bool isTimeSlow = false;
+    [SerializeField] private static float timeScale = 0.5f;
+    private static bool isTimeSlow = false;
 
     //引用InputLayer
-    public void SetInputLayer(InputLayer inputLayer)
+    public static void SetInputLayer(InputLayer layer)
     {
-        this.inputLayer = inputLayer;
+        inputLayer = layer;
     }
 
     //移动
@@ -38,7 +38,7 @@ public class HostManagerSO : ScriptableObject
     }
 
     //退出寄生
-    public void ExitHost()
+    public static void ExitHost()
     {
         if (isPossessing)
         {
@@ -48,39 +48,39 @@ public class HostManagerSO : ScriptableObject
     }
 
     //设置寄生控制权
-    public void SetHost(IPossessable nextHost)
+    public static void SetHost(IPossessable nextHost)
     {
         currentHost = nextHost;
         Debug.Log("HostManagerSO: currentHost: " + currentHost.ToString());
         //条件判断根据后续开发需求来动态更改  高概率导致bug
-        if (currentHost.gameObject.name != "Player")
+        if (currentHost.IsPlayer())
         {
-            isPossessing = true;
+            isPossessing = false;
         }
         else
-            isPossessing = false;
+            isPossessing = true;
         Debug.Log("HostManagerSO: isPossessing = " + isPossessing);
 
     }
     //核心的设置寄生体方法
-    public void RayCastToSetHost()
+    public static void RayCastToSetHost()
     {
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 5);
         if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {
-            CharacterMotor characterMotor = hitInfo.collider.GetComponent<CharacterMotor>();
-            if (characterMotor != null)
+            HostCore hostCore = hitInfo.collider.GetComponent<HostCore>();
+            if (hostCore != null)
             {
                 Debug.Log("HostManagerSO: hitInfo Name: " + hitInfo.collider.name);
-                
-                characterMotor.OnEnterHost();
+
+                hostCore.OnEnterHost();
             }
         }
     }
     //时间控制
-    public void SlowTimeScale()
+    public static void SlowTimeScale()
     {
         if (!isTimeSlow)
         {
@@ -92,7 +92,7 @@ public class HostManagerSO : ScriptableObject
             Debug.Log("HostManagerSO: Time Slowed!");
         }
     }
-    public void ResetTimeScale()
+    public static void ResetTimeScale()
     {
         if (isTimeSlow)
         {

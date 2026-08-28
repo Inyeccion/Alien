@@ -35,6 +35,11 @@ public class MovementController : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+
+    }
+
     private void Start()
     {
         characterMotor = GetComponent<CharacterMotor>();
@@ -49,7 +54,7 @@ public class MovementController : MonoBehaviour
         characterMotor.ApplyDesiredVelocityToInternalVelocity(CalculateFinalDesiredVelocity());
     }
 
-    private bool isCurrentMovementStrategyIndInRange()
+    private bool IsCurrentMovementStrategyIndInRange()
     {
         if (currentMovementStrategyInd < 0) return false;
         if (currentMovementStrategyInd > movementStrategies.Count - 1) return false;
@@ -83,14 +88,14 @@ public class MovementController : MonoBehaviour
 
     private void CalculatePrimaryDesiredVelocity()
     {
-        if (isCurrentMovementStrategyIndInRange())
+        if (IsCurrentMovementStrategyIndInRange())
             primaryDesiredVelocity = movementStrategies[currentMovementStrategyInd].primaryBehavior.Calculate(steeringContext).desiredVelocity;
     }
 
     private void CalculateAuxiliaryDesiredVelocity()
     {
         auxiliaryDesiredVelocity = Vector3.zero;
-        if (isCurrentMovementStrategyIndInRange())
+        if (IsCurrentMovementStrategyIndInRange())
             foreach (var auxiliaryBehavior in movementStrategies[currentMovementStrategyInd].auxiliaryBehaviors)
             {
                 auxiliaryDesiredVelocity += auxiliaryBehavior.Calculate(steeringContext).desiredVelocity;
@@ -139,6 +144,17 @@ public class MovementController : MonoBehaviour
     private void ResetSteeringContext()
     {
         steeringContext.ResetContext();
+    }
+
+    //¿ª¹Ø
+    public void ShutDown()
+    {
+        this.enabled = false;
+    }
+
+    public void ReBoot()
+    {
+        this.enabled = true;
     }
 
 }
