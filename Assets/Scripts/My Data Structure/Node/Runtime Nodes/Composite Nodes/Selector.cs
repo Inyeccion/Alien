@@ -25,6 +25,16 @@ public class Selector : BTNode
         currentChildrenInd = 0;
         return NodeState.failed;
     }
+
+    public override void Reset()
+    {
+        currentChildrenInd = 0;
+        foreach (BTNode child in children)
+        {
+            child.Reset();
+        }
+    }
+
     public Selector()
     {
         nodeType = NodeType.selector;

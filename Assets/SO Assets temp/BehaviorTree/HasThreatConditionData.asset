@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38bcef18d840bf740bc143972325dbd7, type: 3}
-  m_Name: SeekBehavior
+  m_Script: {fileID: 11500000, guid: 0e31f80a3ed6f9d4fa1081cb403db4c8, type: 3}
+  m_Name: HasThreatConditionData
   m_EditorClassIdentifier: 
+  nodeType: 0
+  children: []

@@ -33,4 +33,14 @@ public class SensorSystem : MonoBehaviour
         sensors = new List<ISensor>();
         sensors.Add(new VisionSensor());
     }
+
+    public void ShutDown()
+    {
+        this.enabled = false;
+    }
+
+    public void ReBoot()
+    {
+        this.enabled = true;
+    }
 }

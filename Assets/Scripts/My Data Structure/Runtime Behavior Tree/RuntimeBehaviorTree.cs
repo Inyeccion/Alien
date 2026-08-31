@@ -13,4 +13,9 @@ public class RuntimeBehaviorTree
     {
         return root.Tick();
     }
+
+    public void Reset()
+    {
+        root.Reset();
+    }
 }

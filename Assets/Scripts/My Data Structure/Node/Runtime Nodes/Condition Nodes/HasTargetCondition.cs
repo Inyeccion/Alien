@@ -8,6 +8,14 @@ public class HasTargetCondition : BTNode
         return NodeState.succeed;
     }
 
+    public override void Reset()
+    {
+        foreach (BTNode child in children)
+        {
+            child.Reset();
+        }
+    }
+
     public HasTargetCondition()
     {
         nodeType = NodeType.hasTargetCondition;

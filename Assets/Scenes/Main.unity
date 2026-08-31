@@ -270,7 +270,7 @@ MonoBehaviour:
   height: 0
   collisionMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
   top: {x: 0, y: 0, z: 0}
   bottom: {x: 0, y: 0, z: 0}
   radius: 0
@@ -303,6 +303,9 @@ MonoBehaviour:
       target: {fileID: 0}
       distanceToTarget: 0
       targetPos: {x: 0, y: 0, z: 0}
+      threat: {fileID: 0}
+      distanceToThreat: 0
+      threatPos: {x: 0, y: 0, z: 0}
 --- !u!114 &131079135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,14 +320,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementStrategies:
   - {fileID: 11400000, guid: 15496e73fa39e8c41bd52565093844aa, type: 2}
+  - {fileID: 11400000, guid: 8263b1eb3b25df04587df3868a117e0d, type: 2}
   steeringContext:
     currentPos: {x: 0, y: 0, z: 0}
     currentVelocity: {x: 0, y: 0, z: 0}
+    targetTransform: {fileID: 0}
     targetPos: {x: 0, y: 0, z: 0}
     targetVelocity: {x: 0, y: 0, z: 0}
     maxSpeed: 0
     acceleration: 0
-    targetTransform: {fileID: 0}
   moveIntent: 0
 --- !u!114 &131079136
 MonoBehaviour:
@@ -342,6 +346,9 @@ MonoBehaviour:
     target: {fileID: 0}
     distanceToTarget: 0
     targetPos: {x: 0, y: 0, z: 0}
+    threat: {fileID: 0}
+    distanceToThreat: 0
+    threatPos: {x: 0, y: 0, z: 0}
 --- !u!114 &131079137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1036,7 +1043,7 @@ MonoBehaviour:
   height: 0
   collisionMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   top: {x: 0, y: 0, z: 0}
   bottom: {x: 0, y: 0, z: 0}
   radius: 0

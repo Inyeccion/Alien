@@ -59,15 +59,15 @@ public abstract class CollisionCheck : MonoBehaviour
         }
 
 
-        //没有检测到墙壁碰撞
+        //没有检测到碰撞
         if (!Physics.CapsuleCast(bottom, top, radius, direction, out RaycastHit hitInfo, distance.magnitude, collisionMask))
         {
-            if (this is CharacterMotor characterMotor) Debug.Log("CollisionCheck: 没有检测到墙壁碰撞, externalVelocity不用额外调整");
+            if (this is CharacterMotor characterMotor) Debug.Log("CollisionCheck: 没有检测到碰撞");
             else Debug.LogWarning("CollisionCheck: this is not CharacterMotor");
 
             return distance;
         }
-        else //检测到墙壁碰撞
+        else //检测到碰撞
         {
             //撞上
             Debug.Log("CollisionCheck: Wall has been detected. Collider Object name: " + hitInfo.collider.gameObject.name);

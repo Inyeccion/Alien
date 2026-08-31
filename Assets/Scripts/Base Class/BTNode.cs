@@ -12,4 +12,6 @@ public abstract class BTNode
     public AIContext AIContext;
     public abstract NodeState Tick();
 
+    public abstract void Reset();
+
 }

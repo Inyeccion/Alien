@@ -8,6 +8,14 @@ public class AttackNode : BTNode
         return NodeState.succeed;
     }
 
+    public override void Reset()
+    {
+        foreach (BTNode child in children)
+        {
+            child.Reset();
+        }
+    }
+
     public AttackNode()
     {
         nodeType = NodeType.attackNode;

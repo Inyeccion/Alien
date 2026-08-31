@@ -8,6 +8,7 @@ public class SteeringContext
     public Vector3 currentVelocity;
 
     //目标数据
+    public Transform targetTransform;
     public Vector3 targetPos;
     public Vector3 targetVelocity;
 
@@ -15,7 +16,6 @@ public class SteeringContext
     public float maxSpeed;
     public float acceleration;
 
-    public Transform targetTransform;
 
     public SteeringContext(Transform currentTransform)
     {
@@ -28,13 +28,13 @@ public class SteeringContext
         currentPos = Vector3.zero;
         currentVelocity = Vector3.zero;
 
+        targetTransform = null;
         targetPos = Vector3.zero;
         targetVelocity = Vector3.zero;
 
         maxSpeed = 0;
         acceleration = 0;
 
-        targetTransform = null;
     }
 
 }

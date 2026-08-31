@@ -43,7 +43,9 @@ public class HostManagerSO : ScriptableObject
         if (isPossessing)
         {
             currentHost.OnExitHost();
+            currentHost = null;
             isPossessing = false;
+            Debug.Log("HostManagerSO: currentHost is null");
         }
     }
 
@@ -65,17 +67,20 @@ public class HostManagerSO : ScriptableObject
     //核心的设置寄生体方法
     public static void RayCastToSetHost()
     {
-        Vector2 mousePos = Mouse.current.position.ReadValue();
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 5);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        if (!isPossessing)
         {
-            HostCore hostCore = hitInfo.collider.GetComponent<HostCore>();
-            if (hostCore != null)
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 5);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
             {
-                Debug.Log("HostManagerSO: hitInfo Name: " + hitInfo.collider.name);
+                HostCore hostCore = hitInfo.collider.GetComponent<HostCore>();
+                if (hostCore != null)
+                {
+                    Debug.Log("HostManagerSO: hitInfo Name: " + hitInfo.collider.name);
 
-                hostCore.OnEnterHost();
+                    hostCore.OnEnterHost();
+                }
             }
         }
     }

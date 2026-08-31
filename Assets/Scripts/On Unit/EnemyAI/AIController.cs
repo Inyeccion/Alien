@@ -14,7 +14,13 @@ public class AIController : MonoBehaviour
     private void Awake()
     {
         InitializeContext();
-        InitializeRuntimeTree();        
+        InitializeRuntimeBehaviorTree();        
+    }
+
+    private void OnEnable()
+    {
+        ResetContext();
+        ResetRuntimeBehaviorTree();
     }
 
     private void Update()
@@ -29,12 +35,23 @@ public class AIController : MonoBehaviour
         return true;
     }
 
+    private bool IsThreatExist()
+    {
+        if (AIContext.blackBoard.threat == null) return false;
+        return true;
+    }
+
     private void UpdateBlackBoardContext()
     {
         if (IsTargetExist())
         {
             AIContext.blackBoard.targetPos = AIContext.blackBoard.target.position;
             AIContext.blackBoard.distanceToTarget = (transform.position - AIContext.blackBoard.targetPos).magnitude;
+        }
+        if (IsThreatExist())
+        {
+            AIContext.blackBoard.threatPos = AIContext.blackBoard.threat.position;
+            AIContext.blackBoard.distanceToThreat = (transform.position - AIContext.blackBoard.targetPos).magnitude;
         }
     }
 
@@ -54,7 +71,7 @@ public class AIController : MonoBehaviour
     }
 
     //初始化运行时决策树
-    private void InitializeRuntimeTree()
+    private void InitializeRuntimeBehaviorTree()
     {
         BTNode root = behaviorTree.InitializeTree(behaviorTree.root, AIContext);
         runtimeBehaviorTree = new RuntimeBehaviorTree(root);
@@ -77,8 +94,26 @@ public class AIController : MonoBehaviour
 
     }
 
+    //Reset
+    private void ResetContext()
+    {
+        AIContext.blackBoard.Reset();
+    }
+
+    private void ResetRuntimeBehaviorTree()
+    {
+        runtimeBehaviorTree.Reset();
+        behaviorTreeTimer = 0;
+    }
+
+    //Boot and ShutDown
     public void ShutDown()
     {
         this.enabled = false;
+    }
+
+    public void ReBoot()
+    {
+        this.enabled = true;
     }
 }

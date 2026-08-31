@@ -1,6 +1,7 @@
-using UnityEngine;
 //∏¯MovementStategy”√
-[CreateAssetMenu(fileName = "SeekBehavior", menuName = "Scriptable Object/Steering Behaviors/Seek Behavior")]
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "UniversalSeekBehavior", menuName = "Scriptable Object/Steering Behaviors/Universal Seek Behavior")]
 public class SeekBehaviorSO : SteeringBehaviorSO
 {
     public override SteeringOutput Calculate(SteeringContext context)
@@ -9,9 +10,4 @@ public class SeekBehaviorSO : SteeringBehaviorSO
 
         return new SteeringOutput(desiredVelocity, Vector3.zero);
     }
-}
-
-public abstract class SteeringBehaviorSO : ScriptableObject
-{
-    public abstract SteeringOutput Calculate(SteeringContext context);
 }

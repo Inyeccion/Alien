@@ -24,6 +24,14 @@ public class Sequencer : BTNode
         return NodeState.succeed;
     }
 
+    public override void Reset()
+    {
+        currentChildrenInd = 0;
+        foreach (BTNode child in children)
+        {
+            child.Reset();
+        }
+    }
 
     public Sequencer()
     {

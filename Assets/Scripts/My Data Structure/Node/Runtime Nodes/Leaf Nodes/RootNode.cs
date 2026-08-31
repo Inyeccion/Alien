@@ -8,6 +8,14 @@ public class RootNode : BTNode
         return children[0].Tick();
     }
 
+    public override void Reset()
+    {
+        foreach (BTNode child in children)
+        {
+            child.Reset();
+        }
+    }
+
     public RootNode()
     {
         nodeType = NodeType.rootNode;

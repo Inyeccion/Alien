@@ -11,10 +11,18 @@ public class ChaseNode : BTNode
         if (AIContext.blackBoard.distanceToTarget < distanceStopChase)
         {
             AIContext.movementController.SetMoveIntent(MovementType.chase);
-            AIContext.movementController.SetSteeringContext(AIContext.blackBoard.target);
+            AIContext.movementController.SetSteeringContextTarget(AIContext.blackBoard.target);
             return NodeState.running;
         }
         else return NodeState.failed;
+    }
+
+    public override void Reset()
+    {
+        foreach (BTNode child in children)
+        {
+            child.Reset();
+        }
     }
 
     public ChaseNode()

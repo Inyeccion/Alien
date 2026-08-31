@@ -37,7 +37,9 @@ public class MovementController : MonoBehaviour
 
     private void OnEnable()
     {
-
+        ResetSteeringContext();
+        ResetMoveIntent();
+        ResetStrategyInd();
     }
 
     private void Start()
@@ -116,9 +118,14 @@ public class MovementController : MonoBehaviour
 
     //应该要有多个重载
     //ChaseNode
-    public void SetSteeringContext(Transform target)
+    public void SetSteeringContextTarget(Transform target)
     {
         steeringContext.targetTransform = target;
+    }
+    //FleeNode
+    public void SetSteeringContextThreat(Transform threat)
+    {
+        steeringContext.targetTransform = threat;
     }
 
     //更新steeringBehavior需要的对应信息
@@ -140,10 +147,22 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    //更换意图之后，重置上下文
+    //重置上下文
     private void ResetSteeringContext()
     {
         steeringContext.ResetContext();
+    }
+
+    //重置移动意图
+    private void ResetMoveIntent()
+    {
+        moveIntent = MovementType.idle;
+    }
+
+    //重置策略Index
+    private void ResetStrategyInd()
+    {
+        currentMovementStrategyInd = -1;
     }
 
     //开关

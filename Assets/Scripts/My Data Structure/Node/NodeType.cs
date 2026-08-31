@@ -1,14 +1,16 @@
 public enum NodeType
 {
-    hasTargetCondition,
+    rootNode,
 
     selector,
     sequencer,
-   
-    attackNode,
 
+    hasTargetCondition,
+    hasThreatCondition,
+
+    attackNode,
     moveToNode,
     chaseNode,
+    fleeNode,
 
-    rootNode
 }
