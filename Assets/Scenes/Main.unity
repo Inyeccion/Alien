@@ -274,7 +274,6 @@ MonoBehaviour:
   top: {x: 0, y: 0, z: 0}
   bottom: {x: 0, y: 0, z: 0}
   radius: 0
-  hostManager: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
   movementProfile: {fileID: 11400000, guid: 6eee8fa9fc31b31488da79a5d9a6b5ee, type: 2}
   tempMoveVec: {x: 0, y: 0, z: 0}
   finalMoveVec: {x: 0, y: 0, z: 0}
@@ -321,6 +320,7 @@ MonoBehaviour:
   movementStrategies:
   - {fileID: 11400000, guid: 15496e73fa39e8c41bd52565093844aa, type: 2}
   - {fileID: 11400000, guid: 8263b1eb3b25df04587df3868a117e0d, type: 2}
+  - {fileID: 11400000, guid: 9fedd1e224b44594aa065a23aa2cdf3d, type: 2}
   steeringContext:
     currentPos: {x: 0, y: 0, z: 0}
     currentVelocity: {x: 0, y: 0, z: 0}
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSO: {fileID: 0}
-  unitDataSO: {fileID: 11400000, guid: 3dc4c33c796e71542a0fa1bb2ca77d3a, type: 2}
+  unitDataSO: {fileID: 11400000, guid: 8a98f3a18fe9b9640bf8eb9659cb11b4, type: 2}
 --- !u!114 &1430765502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,8 +1047,7 @@ MonoBehaviour:
   top: {x: 0, y: 0, z: 0}
   bottom: {x: 0, y: 0, z: 0}
   radius: 0
-  hostManager: {fileID: 11400000, guid: fd220b2b30136a4409c28d136fdbba9a, type: 2}
-  movementProfile: {fileID: 11400000, guid: 6eee8fa9fc31b31488da79a5d9a6b5ee, type: 2}
+  movementProfile: {fileID: 11400000, guid: bdfdff6db9ed0594d8a9e96ae09e73c4, type: 2}
   tempMoveVec: {x: 0, y: 0, z: 0}
   finalMoveVec: {x: 0, y: 0, z: 0}
   internalVelocity: {x: 0, y: 0, z: 0}
@@ -1066,7 +1065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86854e9376725243afb29697911e41b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitData: {fileID: 11400000, guid: 3dc4c33c796e71542a0fa1bb2ca77d3a, type: 2}
+  unitData: {fileID: 11400000, guid: 8a98f3a18fe9b9640bf8eb9659cb11b4, type: 2}
 --- !u!114 &1430765504
 MonoBehaviour:
   m_ObjectHideFlags: 0

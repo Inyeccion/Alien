@@ -11,7 +11,10 @@ public class FleeNode : BTNode
             AIContext.movementController.SetSteeringContextThreat(AIContext.blackBoard.threat);
             return NodeState.running;
         }
+        AIContext.movementController.SetMoveIntent(MovementType.idle);
         return NodeState.succeed;
+
+
     }
 
     public override void Reset()

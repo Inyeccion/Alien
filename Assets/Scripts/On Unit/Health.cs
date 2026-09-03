@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         healthSO.currentHealth -= damage;
-        if (healthSO.currentHealth < 0)
+        if (healthSO.currentHealth <= 0)
         {
             healthSO.currentHealth = 0;
             Die();

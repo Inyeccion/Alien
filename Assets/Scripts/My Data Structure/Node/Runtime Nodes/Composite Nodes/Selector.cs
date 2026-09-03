@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-//这里初步设计成
+//这里初步设计成有记忆
 public class Selector : BTNode
 {
     public int currentChildrenInd = 0;

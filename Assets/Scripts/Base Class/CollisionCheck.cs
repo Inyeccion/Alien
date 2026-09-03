@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public abstract class CollisionCheck : MonoBehaviour
 {
     private float skinWidth = 0.02f;
-    private float playerWallAngle;
     private Vector3 wallNormal;
     protected CapsuleCollider capsuleCollider;
     [SerializeField]
@@ -27,8 +26,6 @@ public abstract class CollisionCheck : MonoBehaviour
     protected float radius;
 
     protected Rigidbody rb;
-
-    [SerializeField] protected HostManagerSO hostManager;
 
 
     protected void CalculateForCast()

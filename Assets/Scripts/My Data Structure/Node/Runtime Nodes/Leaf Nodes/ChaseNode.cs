@@ -7,14 +7,17 @@ public class ChaseNode : BTNode
     private float distanceStopChase;
     public override NodeState Tick()
     {
-        //Ð¡ÓÚ³ðºÞ·¶Î§£¬×·»÷
         if (AIContext.blackBoard.distanceToTarget < distanceStopChase)
+        {
+            AIContext.movementController.SetMoveIntent(MovementType.idle);
+            return NodeState.succeed;
+        }
+        else
         {
             AIContext.movementController.SetMoveIntent(MovementType.chase);
             AIContext.movementController.SetSteeringContextTarget(AIContext.blackBoard.target);
             return NodeState.running;
         }
-        else return NodeState.failed;
     }
 
     public override void Reset()

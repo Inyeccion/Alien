@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e31f80a3ed6f9d4fa1081cb403db4c8, type: 3}
   m_Name: HasThreatConditionData
   m_EditorClassIdentifier: 
-  nodeType: 0
+  nodeType: 4
   children: []

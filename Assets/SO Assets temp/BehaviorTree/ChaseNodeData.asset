@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb8db5c94121ff248b50911d2a44ea43, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a2cd56ebfe27a54591b31fa4db44e57, type: 3}
   m_Name: ChaseNodeData
   m_EditorClassIdentifier: 
-  nodeType: 6
+  nodeType: 7
   children: []
-  distanceStopChase: 10
+  distanceStopChase: 4

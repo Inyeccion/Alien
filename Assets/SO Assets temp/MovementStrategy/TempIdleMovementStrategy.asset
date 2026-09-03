@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f765ebeb5fd2e9a488ab3cf4af480189, type: 3}
-  m_Name: FleeNodeData
+  m_Script: {fileID: 11500000, guid: 671f5f418e834c14a8377486e37538a7, type: 3}
+  m_Name: TempIdleMovementStrategy
   m_EditorClassIdentifier: 
-  nodeType: 8
-  children: []
-  distanceStopFlee: 2
+  movementType: 0
+  primaryBehavior: {fileID: 0}
+  auxiliaryBehaviors: []

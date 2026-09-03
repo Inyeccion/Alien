@@ -3,6 +3,7 @@ using System.Collections.Generic;
 public class MovementController : MonoBehaviour
 {
     [SerializeField] private List<MovementStrategySO> movementStrategies;
+    [SerializeField] private List<MovementStrategySO> runtimeMovementStrategies;
     private int currentMovementStrategyInd = -1;
 
     public SteeringContext steeringContext;
@@ -32,7 +33,7 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         InitializeSteeringContext();
-
+        InitializeRuntimeMovementStrategies();
     }
 
     private void OnEnable()
@@ -59,21 +60,21 @@ public class MovementController : MonoBehaviour
     private bool IsCurrentMovementStrategyIndInRange()
     {
         if (currentMovementStrategyInd < 0) return false;
-        if (currentMovementStrategyInd > movementStrategies.Count - 1) return false;
+        if (currentMovementStrategyInd > runtimeMovementStrategies.Count - 1) return false;
         return true;
     }
 
     private void SetCurrentStrategyInd()
     {
-        for (int i = 0; i < movementStrategies.Count; i++)
+        for (int i = 0; i < runtimeMovementStrategies.Count; i++)
         {
-            if (movementStrategies[i].movementType == moveIntent)
+            if (runtimeMovementStrategies[i].movementType == moveIntent)
             {
                 currentMovementStrategyInd = i;
-                break;
+                return;
             }
-            else Debug.LogWarning("MovementController: moveIntent and MoveStrategy miss match");
         }
+        Debug.LogWarning("MovementController: moveIntent and MoveStrategy miss match");
     }
 
     private void ResetVelocities()
@@ -91,14 +92,14 @@ public class MovementController : MonoBehaviour
     private void CalculatePrimaryDesiredVelocity()
     {
         if (IsCurrentMovementStrategyIndInRange())
-            primaryDesiredVelocity = movementStrategies[currentMovementStrategyInd].primaryBehavior.Calculate(steeringContext).desiredVelocity;
+            primaryDesiredVelocity = runtimeMovementStrategies[currentMovementStrategyInd].primaryBehavior.Calculate(steeringContext).desiredVelocity;
     }
 
     private void CalculateAuxiliaryDesiredVelocity()
     {
         auxiliaryDesiredVelocity = Vector3.zero;
         if (IsCurrentMovementStrategyIndInRange())
-            foreach (var auxiliaryBehavior in movementStrategies[currentMovementStrategyInd].auxiliaryBehaviors)
+            foreach (var auxiliaryBehavior in runtimeMovementStrategies[currentMovementStrategyInd].auxiliaryBehaviors)
             {
                 auxiliaryDesiredVelocity += auxiliaryBehavior.Calculate(steeringContext).desiredVelocity;
             }
@@ -108,6 +109,14 @@ public class MovementController : MonoBehaviour
     {
         //初始化steering上下文
         steeringContext = new SteeringContext(transform);
+    }
+
+    private void InitializeRuntimeMovementStrategies()
+    {
+        foreach (MovementStrategySO strategy in movementStrategies)
+        {
+            runtimeMovementStrategies.Add(strategy.Instantiate());
+        }
     }
 
     //给结点使用
