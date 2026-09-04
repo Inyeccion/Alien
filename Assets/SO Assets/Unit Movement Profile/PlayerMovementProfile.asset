@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d806e0149e3de174691355106f6f7575, type: 3}
   m_Name: PlayerMovementProfile
   m_EditorClassIdentifier: 
-  maxSpeed: 10
+  maxSpeed: 7
   acceleration: 100
   deceleration: 100
-  unitFriction: 3
+  unitFriction: 10

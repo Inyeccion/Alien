@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+
+//”–º«“‰
 public class Sequencer : BTNode
 {
     private int currentChildrenInd = 0;

@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f765ebeb5fd2e9a488ab3cf4af480189, type: 3}
-  m_Name: FleeNodeData
+  m_Script: {fileID: 11500000, guid: 0e31f80a3ed6f9d4fa1081cb403db4c8, type: 3}
+  m_Name: SequencerDataWander
   m_EditorClassIdentifier: 
-  nodeType: 9
-  children: []
-  distanceStopFlee: 2
+  nodeType: 2
+  children:
+  - {fileID: 11400000, guid: b9183e67af798234bbf8943fbf2ede30, type: 2}
+  - {fileID: 11400000, guid: 1d454f0a61889e943ad58691ce585dd2, type: 2}

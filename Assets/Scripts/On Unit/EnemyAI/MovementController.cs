@@ -143,14 +143,14 @@ public class MovementController : MonoBehaviour
         if (steeringContext.targetTransform != null)
         {
             steeringContext.targetPos = steeringContext.targetTransform.position;
-            steeringContext.targetVelocity = steeringContext.targetTransform.GetComponent<CharacterMotor>().GetMoveVec();
+            steeringContext.targetMoveVec = steeringContext.targetTransform.GetComponent<CharacterMotor>().GetMoveVec();
         }
 
         steeringContext.currentPos = transform.position;
 
         if (characterMotor != null)
         {
-            steeringContext.currentVelocity = characterMotor.GetMoveVec();
+            steeringContext.currentMoveVec = characterMotor.GetMoveVec();
             steeringContext.maxSpeed = characterMotor.GetMaxSpeed();
             steeringContext.acceleration = characterMotor.GetAcceleration();
         }

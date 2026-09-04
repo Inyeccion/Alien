@@ -17,6 +17,12 @@ public static class NodeFactory
             hasTargetCondition.Initialize(AIContext);
             return hasTargetCondition;
         }
+        if (currentNodeData.nodeType == NodeType.hasNoTargetCondition)
+        {
+            HasNoTargetCondition hasNoTargetCondition = new HasNoTargetCondition();
+            hasNoTargetCondition.Initialize(AIContext);
+            return hasNoTargetCondition;
+        }
         if (currentNodeData.nodeType == NodeType.hasThreatCondition)
         {
             HasThreatCondition hasThreatCondition = new HasThreatCondition();
@@ -49,6 +55,18 @@ public static class NodeFactory
             if (currentNodeData is FleeNodeDataSO fleeNodeData)
                 fleeNode.Initialize(fleeNodeData.distanceStopFlee, AIContext);
             return fleeNode;
+        }
+        if (currentNodeData.nodeType == NodeType.idleNode)
+        {
+            IdleNode idleNode = new IdleNode();
+            idleNode.Initialize(AIContext);
+            return idleNode;
+        }
+        if (currentNodeData.nodeType == NodeType.wanderNode)
+        {
+            WanderNode wanderNode = new WanderNode();
+            wanderNode.Initialize(AIContext);
+            return wanderNode;
         }
         Debug.LogWarning("NodeFactory: nodeType mismatch, creating a root BTNode");
         return new RootNode();

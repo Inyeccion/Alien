@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f765ebeb5fd2e9a488ab3cf4af480189, type: 3}
-  m_Name: FleeNodeData
+  m_Script: {fileID: 11500000, guid: 0e31f80a3ed6f9d4fa1081cb403db4c8, type: 3}
+  m_Name: WanderNodeData
   m_EditorClassIdentifier: 
-  nodeType: 9
+  nodeType: 11
   children: []
-  distanceStopFlee: 2

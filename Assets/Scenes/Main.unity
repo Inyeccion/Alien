@@ -321,12 +321,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 15496e73fa39e8c41bd52565093844aa, type: 2}
   - {fileID: 11400000, guid: 8263b1eb3b25df04587df3868a117e0d, type: 2}
   - {fileID: 11400000, guid: 9fedd1e224b44594aa065a23aa2cdf3d, type: 2}
+  - {fileID: 11400000, guid: a537925f855fcd246b2516ab65b45340, type: 2}
+  runtimeMovementStrategies: []
   steeringContext:
     currentPos: {x: 0, y: 0, z: 0}
-    currentVelocity: {x: 0, y: 0, z: 0}
+    currentMoveVec: {x: 0, y: 0, z: 0}
     targetTransform: {fileID: 0}
     targetPos: {x: 0, y: 0, z: 0}
-    targetVelocity: {x: 0, y: 0, z: 0}
+    targetMoveVec: {x: 0, y: 0, z: 0}
     maxSpeed: 0
     acceleration: 0
   moveIntent: 0

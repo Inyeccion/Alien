@@ -9,7 +9,6 @@ public class ChaseNode : BTNode
     {
         if (AIContext.blackBoard.distanceToTarget < distanceStopChase)
         {
-            AIContext.movementController.SetMoveIntent(MovementType.idle);
             return NodeState.succeed;
         }
         else

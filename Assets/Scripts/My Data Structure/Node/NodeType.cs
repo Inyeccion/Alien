@@ -7,10 +7,12 @@ public enum NodeType
 
     hasTargetCondition,
     hasThreatCondition,
+    hasNoTargetCondition,
 
     attackNode,
     moveToNode,
     chaseNode,
     fleeNode,
-
+    idleNode,
+    wanderNode,
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TempIdleMovementStrategy
   m_EditorClassIdentifier: 
   movementType: 0
-  primaryBehavior: {fileID: 0}
+  primaryBehavior: {fileID: 11400000, guid: abc753210fe9bf848b1e169def6816f7, type: 2}
   auxiliaryBehaviors: []
