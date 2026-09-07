@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementType: 1
   primaryBehavior: {fileID: 11400000, guid: e84d8aa2bac5ac64282726e2f2f3e8f7, type: 2}
-  auxiliaryBehaviors: []
+  auxiliaryBehaviors:
+  - {fileID: 11400000, guid: d2a77e40157021648a1ff823681bb188, type: 2}

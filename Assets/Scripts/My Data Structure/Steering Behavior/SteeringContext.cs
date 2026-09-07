@@ -6,6 +6,8 @@ public class SteeringContext
     //自身数据
     public Vector3 currentPos;
     public Vector3 currentMoveVec;
+    public Vector3 currentPrimaryDesiredVelocity;
+    public CharacterMotor currentCharacterMotor;
 
     //目标数据
     public Transform targetTransform;
@@ -27,6 +29,8 @@ public class SteeringContext
     {
         currentPos = Vector3.zero;
         currentMoveVec = Vector3.zero;
+        currentPrimaryDesiredVelocity = Vector3.zero;
+        currentCharacterMotor = null;
 
         targetTransform = null;
         targetPos = Vector3.zero;

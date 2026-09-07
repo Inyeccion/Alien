@@ -53,6 +53,7 @@ public class MovementController : MonoBehaviour
         ResetVelocities();
         UpdateSteeringContext();
         CalculatePrimaryDesiredVelocity();
+        UpdatePrimaryDesiredVelocityToContext();
         CalculateAuxiliaryDesiredVelocity();
         characterMotor.ApplyDesiredVelocityToInternalVelocity(CalculateFinalDesiredVelocity());
     }
@@ -151,9 +152,16 @@ public class MovementController : MonoBehaviour
         if (characterMotor != null)
         {
             steeringContext.currentMoveVec = characterMotor.GetMoveVec();
+            steeringContext.currentCharacterMotor = characterMotor;
+
             steeringContext.maxSpeed = characterMotor.GetMaxSpeed();
             steeringContext.acceleration = characterMotor.GetAcceleration();
         }
+    }
+
+    private void UpdatePrimaryDesiredVelocityToContext()
+    {
+        steeringContext.currentPrimaryDesiredVelocity = primaryDesiredVelocity;
     }
 
     //重置上下文

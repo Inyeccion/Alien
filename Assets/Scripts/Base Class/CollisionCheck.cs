@@ -1,4 +1,6 @@
 using System;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,6 +29,27 @@ public abstract class CollisionCheck : MonoBehaviour
 
     protected Rigidbody rb;
 
+    public CapsuleHit PerformObstacleAvoidanceCast(Vector3 direction, float distance, LayerMask obstacleLayer)
+    {
+        CalculateForCast();
+        
+        if (Physics.CapsuleCast(bottom, top, radius, direction, out RaycastHit hitInfo, distance, obstacleLayer))
+        {
+            return new CapsuleHit
+            {
+                hit = true,
+                hitInfo = hitInfo
+            };
+        }
+        else         {
+            return new CapsuleHit
+            {
+                hit = false,
+                hitInfo = new RaycastHit()
+            };
+        }
+
+    }
 
     protected void CalculateForCast()
     {
