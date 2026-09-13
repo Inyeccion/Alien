@@ -12,9 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4557b48abaaa39c43b57fe1e3a4b0ee3, type: 3}
   m_Name: SpecificObstacleAvoidanceBehavior
   m_EditorClassIdentifier: 
-  baseLookAheadDistance: 3
+  baseLookAheadDistance: 1.5
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 128
   avoidanceStrength: 10
   side: 0
+  centerBlocked: 0
+  leftBlocked: 0
+  rightBlocked: 0
+  leftProbAngle: 60
+  rightProbAngle: 60
+  leftProbDistance: 1.5
+  rightProbDistance: 1.5
